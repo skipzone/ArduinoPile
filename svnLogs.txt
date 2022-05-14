@@ -1,0 +1,1621 @@
+
+
+===================== AudioRecorderTest ====================
+              1021     1021 ross         ../Arduino/AudioRecorderTest/AudioRecorderTest.ino
+              1021     1021 ross         ../Arduino/AudioRecorderTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r1021 | ross | 2018-05-19 23:10:35 -0600 (Sat, 19 May 2018) | 2 lines
+
+Importing AudioRecorderTest project.
+
+------------------------------------------------------------------------
+
+
+===================== CatScanner ====================
+              1004     1004 ross         ../Arduino/CatScanner/CatScanner.ino
+              1004     1004 ross         ../Arduino/CatScanner
+Status against revision:   1065
+------------------------------------------------------------------------
+r1004 | ross | 2016-12-05 10:28:31 -0700 (Mon, 05 Dec 2016) | 2 lines
+
+Adding CatScanner.
+
+------------------------------------------------------------------------
+
+
+===================== CatTailAndEars ====================
+               962      858 ross         ../Arduino/CatTailAndEars/CatTailAndEars.ino
+               962      858 ross         ../Arduino/CatTailAndEars
+Status against revision:   1065
+------------------------------------------------------------------------
+r858 | ross | 2015-11-20 21:49:04 -0700 (Fri, 20 Nov 2015) | 1 line
+
+Fixed mirroring.  This is the version that is going to 8th PCB on 11/20/2015.
+------------------------------------------------------------------------
+r857 | ross | 2015-11-20 21:40:13 -0700 (Fri, 20 Nov 2015) | 1 line
+
+Added new patterns.  Made mirroring work for development strip but is now wrong for cat tail.
+------------------------------------------------------------------------
+r728 | ross | 2014-11-21 22:14:37 -0700 (Fri, 21 Nov 2014) | 1 line
+
+Added sparkle.  Did turd polishing.  Ready for Pussycat Ball.
+------------------------------------------------------------------------
+r727 | ross | 2014-11-21 21:56:31 -0700 (Fri, 21 Nov 2014) | 1 line
+
+Red dot is working.  Also ears PWM.
+------------------------------------------------------------------------
+r726 | ross | 2014-11-19 23:35:56 -0700 (Wed, 19 Nov 2014) | 1 line
+
+Working.  Has 3 patterns:  rotating rainbow, alternating orange/blue, rotating orange/blue.
+------------------------------------------------------------------------
+r725 | ross | 2014-11-19 23:07:25 -0700 (Wed, 19 Nov 2014) | 2 lines
+
+Initial commit of CatTailAndEars.  Unbuilt and untested.
+
+------------------------------------------------------------------------
+
+
+===================== CharacterLCDTest ====================
+              1010     1010 ross         ../Arduino/CharacterLCDTest/CharacterLCDTest.ino
+              1010     1010 ross         ../Arduino/CharacterLCDTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r1010 | ross | 2018-02-28 15:38:56 -0700 (Wed, 28 Feb 2018) | 1 line
+
+Added support for 16x2 display.
+------------------------------------------------------------------------
+r799 | ross | 2015-06-16 20:39:00 -0600 (Tue, 16 Jun 2015) | 2 lines
+
+Initial commit of CharacterLCDTest
+
+------------------------------------------------------------------------
+
+
+===================== CircusMonkeysRacingLights ====================
+               962      723 ross         ../Arduino/CircusMonkeysRacingLights/CircusMonkeysRacingLights.ino
+               962      723 ross         ../Arduino/CircusMonkeysRacingLights
+Status against revision:   1065
+------------------------------------------------------------------------
+r723 | ross | 2014-11-03 21:01:25 -0700 (Mon, 03 Nov 2014) | 1 line
+
+Changed NUM_LEDS to 24.  This is the final version that ran on 31 Oct.
+------------------------------------------------------------------------
+r720 | ross | 2014-10-27 22:29:37 -0600 (Mon, 27 Oct 2014) | 1 line
+
+Red/white racing lights and dim red background lights done.
+------------------------------------------------------------------------
+r719 | ross | 2014-10-27 21:07:48 -0600 (Mon, 27 Oct 2014) | 2 lines
+
+Moved CircusMonkeysRacingLights from PIC to Arduino, where it should have fucking been in the first place.
+
+------------------------------------------------------------------------
+r718 | ross | 2014-10-27 21:06:14 -0600 (Mon, 27 Oct 2014) | 2 lines
+
+Corrected name of CircusMonkeysRacingLights project.
+
+------------------------------------------------------------------------
+r717 | ross | 2014-10-27 21:02:39 -0600 (Mon, 27 Oct 2014) | 2 lines
+
+Adding CircusMonkeysRacingLights.
+
+------------------------------------------------------------------------
+
+
+===================== DrewsDiamond ====================
+               962      818 ross         ../Arduino/DrewsDiamond/DrewsDiamond.ino
+               962      818 ross         ../Arduino/DrewsDiamond
+Status against revision:   1065
+------------------------------------------------------------------------
+r818 | ross | 2015-07-06 21:52:53 -0600 (Mon, 06 Jul 2015) | 1 line
+
+Non-symmetrical pixel(s) now set to bg color in shine.  This is the version that is going to Element 11.
+------------------------------------------------------------------------
+r817 | ross | 2015-07-06 20:49:29 -0600 (Mon, 06 Jul 2015) | 1 line
+
+First build of the real deal.
+------------------------------------------------------------------------
+r816 | ross | 2015-07-06 20:06:41 -0600 (Mon, 06 Jul 2015) | 1 line
+
+Got the good shine working.
+------------------------------------------------------------------------
+r815 | ross | 2015-07-06 18:10:44 -0600 (Mon, 06 Jul 2015) | 1 line
+
+Moving Dot foreground (the dot) now scaled to bg intensity.
+------------------------------------------------------------------------
+r814 | ross | 2015-07-05 23:16:44 -0600 (Sun, 05 Jul 2015) | 1 line
+
+Added support for mode pushbutton.  Added shine pattern with simple, stepped shine.
+------------------------------------------------------------------------
+r810 | ross | 2015-06-30 22:20:05 -0600 (Tue, 30 Jun 2015) | 1 line
+
+Added SOLID_COLOR.
+------------------------------------------------------------------------
+r809 | ross | 2015-06-30 01:04:22 -0600 (Tue, 30 Jun 2015) | 1 line
+
+Removed blocking delay from multiWave.  Improved timing of movingDot.
+------------------------------------------------------------------------
+r808 | ross | 2015-06-29 22:34:11 -0600 (Mon, 29 Jun 2015) | 1 line
+
+On-board LED illuminated when unable to keep up with pattern updates.
+------------------------------------------------------------------------
+r807 | ross | 2015-06-29 21:59:46 -0600 (Mon, 29 Jun 2015) | 1 line
+
+Eliminated all blocking delays except in multiWave.
+------------------------------------------------------------------------
+r806 | ross | 2015-06-17 21:48:23 -0600 (Wed, 17 Jun 2015) | 2 lines
+
+Initial import of DrewsDiamond.
+
+------------------------------------------------------------------------
+
+
+===================== ESP8266PixelPatternFrameworkTest ====================
+              1003      964 ross         ../Arduino/ESP8266PixelPatternFrameworkTest/colorDefs.txt
+              1003     1003 ross         ../Arduino/ESP8266PixelPatternFrameworkTest/ESP8266PixelPatternFrameworkTest.ino
+              1003      982 ross         ../Arduino/ESP8266PixelPatternFrameworkTest/patternDefinitions.h
+              1003     1003 ross         ../Arduino/ESP8266PixelPatternFrameworkTest/sequenceDefinition.h
+              1003     1003 ross         ../Arduino/ESP8266PixelPatternFrameworkTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r1003 | ross | 2016-11-30 13:17:29 -0700 (Wed, 30 Nov 2016) | 1 line
+
+Fixed pin numbers for sections 0 and 1.  Added some pattern defs.
+------------------------------------------------------------------------
+r995 | ross | 2016-11-22 22:48:11 -0700 (Tue, 22 Nov 2016) | 1 line
+
+Added mode button and hard-init trigger.
+------------------------------------------------------------------------
+r994 | ross | 2016-11-22 20:21:19 -0700 (Tue, 22 Nov 2016) | 1 line
+
+Fixed battery voltage measurement and calculation.  ESP8266 ADC is a noisy fucker.
+------------------------------------------------------------------------
+r993 | ross | 2016-11-18 19:22:48 -0700 (Fri, 18 Nov 2016) | 1 line
+
+Added blinking status LED.
+------------------------------------------------------------------------
+r990 | ross | 2016-10-23 14:58:48 -0600 (Sun, 23 Oct 2016) | 1 line
+
+Added comment showing how to get assembly listing.  Reduced foreground and background intensities.
+------------------------------------------------------------------------
+r988 | ross | 2016-10-22 09:18:58 -0600 (Sat, 22 Oct 2016) | 1 line
+
+Fixed DMX off-by-one error.  Removed mods for patio and soffit lights.
+------------------------------------------------------------------------
+r987 | ross | 2016-10-22 09:01:21 -0600 (Sat, 22 Oct 2016) | 1 line
+
+Temporary modifications for use with patio and soffet lights.
+------------------------------------------------------------------------
+r984 | ross | 2016-10-20 15:37:55 -0600 (Thu, 20 Oct 2016) | 1 line
+
+Added static IP address.
+------------------------------------------------------------------------
+r982 | ross | 2016-10-20 13:05:21 -0600 (Thu, 20 Oct 2016) | 1 line
+
+Moved Esp8266WebPage class to the PixelPatternFramework library.  DMX write now done only when necessary.  Added battery voltage status text.
+------------------------------------------------------------------------
+r980 | ross | 2016-10-19 12:01:03 -0600 (Wed, 19 Oct 2016) | 1 line
+
+Implemented presets.
+------------------------------------------------------------------------
+r978 | ross | 2016-10-18 23:32:05 -0600 (Tue, 18 Oct 2016) | 1 line
+
+Web page now working.
+------------------------------------------------------------------------
+r977 | ross | 2016-10-18 16:26:51 -0600 (Tue, 18 Oct 2016) | 1 line
+
+Added prints for debugging.
+------------------------------------------------------------------------
+r976 | ross | 2016-10-17 21:52:03 -0600 (Mon, 17 Oct 2016) | 1 line
+
+Moved web page stuff to new Esp8266WebPage class.
+------------------------------------------------------------------------
+r974 | ross | 2016-10-17 10:25:13 -0600 (Mon, 17 Oct 2016) | 1 line
+
+Changed color order of section 0 to RGB for strawberry pixel strings.
+------------------------------------------------------------------------
+r971 | ross | 2016-10-15 18:05:12 -0600 (Sat, 15 Oct 2016) | 1 line
+
+Hacked for BSU homecoming lights on house.
+------------------------------------------------------------------------
+r969 | ross | 2016-10-15 17:00:15 -0600 (Sat, 15 Oct 2016) | 1 line
+
+Added DMX support.  Commented out MultiWave3 patterns because they cause crashes.
+------------------------------------------------------------------------
+r968 | ross | 2016-10-14 18:14:35 -0600 (Fri, 14 Oct 2016) | 1 line
+
+Fixed section indexing problems.  MultiWave patterns still cause crashes.
+------------------------------------------------------------------------
+r965 | ross | 2016-10-14 16:19:55 -0600 (Fri, 14 Oct 2016) | 1 line
+
+Implemented sections as arrays of things.
+------------------------------------------------------------------------
+r964 | ross | 2016-10-14 13:14:20 -0600 (Fri, 14 Oct 2016) | 2 lines
+
+Adding ESP8266PixelPatternFrameworkTest
+
+------------------------------------------------------------------------
+
+
+===================== GalacticArachnid ====================
+               962      919 ross         ../Arduino/GalacticArachnid/colorDefs.txt
+               962      949 ross         ../Arduino/GalacticArachnid/patternDefinitions.h
+               986      986 ross         ../Arduino/GalacticArachnid/GalacticArachnid.ino
+               962      949 ross         ../Arduino/GalacticArachnid/sequenceDefinition.h
+               962      949 ross         ../Arduino/GalacticArachnid
+Status against revision:   1065
+------------------------------------------------------------------------
+r949 | ross | 2016-06-12 19:49:58 -0600 (Sun, 12 Jun 2016) | 1 line
+
+More eye pixels, new patterns.
+------------------------------------------------------------------------
+r938 | ross | 2016-04-06 23:33:23 -0600 (Wed, 06 Apr 2016) | 1 line
+
+Separated body and head.  Added paint pattern for legs.  Sped up fill pattern.
+------------------------------------------------------------------------
+r932 | ross | 2016-03-23 23:07:39 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Changed head and body pixels from 75 to 50.  Seems stable.  Starts in auto mode.  This is the version we intend to run at Treefort.
+------------------------------------------------------------------------
+r931 | ross | 2016-03-23 10:03:39 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Added tx enable for external control.
+------------------------------------------------------------------------
+r928 | ross | 2016-03-23 01:32:47 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Semi-final set of patterns.
+------------------------------------------------------------------------
+r924 | ross | 2016-03-22 22:21:49 -0600 (Tue, 22 Mar 2016) | 1 line
+
+Added external selector via I2C.  Still needs debugging.
+------------------------------------------------------------------------
+r919 | ross | 2016-03-21 16:16:41 -0600 (Mon, 21 Mar 2016) | 2 lines
+
+Initial addtion of GalacticArachnid.
+
+------------------------------------------------------------------------
+
+
+===================== GalacticArachnidWebServer ====================
+               962      951 ross         ../Arduino/GalacticArachnidWebServer/GalacticArachnidWebServer.ino
+               962      951 ross         ../Arduino/GalacticArachnidWebServer
+Status against revision:   1065
+------------------------------------------------------------------------
+r951 | ross | 2016-06-12 19:51:42 -0600 (Sun, 12 Jun 2016) | 1 line
+
+New patterns.
+------------------------------------------------------------------------
+r939 | ross | 2016-04-06 23:34:16 -0600 (Wed, 06 Apr 2016) | 1 line
+
+Added Pretty preset.  Made Angry use new paint pattern for legs.  Added display of battery voltage.
+------------------------------------------------------------------------
+r934 | ross | 2016-03-24 17:54:29 -0600 (Thu, 24 Mar 2016) | 1 line
+
+Fixed disabling of station mode.  Disabled for Treefort because web page doesn't work via AP if not connected to WiFi network specified for sta.
+------------------------------------------------------------------------
+r933 | ross | 2016-03-23 23:08:27 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Put a delay(1) after the first client.print(s) to eliminate timeout problem on Chrome on Android.
+------------------------------------------------------------------------
+r930 | ross | 2016-03-23 10:03:23 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Added tx enable.
+------------------------------------------------------------------------
+r929 | ross | 2016-03-23 01:33:18 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Modified for semi-final set of patterns.
+------------------------------------------------------------------------
+r922 | ross | 2016-03-21 19:20:44 -0600 (Mon, 21 Mar 2016) | 1 line
+
+Changed to I2C master.
+------------------------------------------------------------------------
+r920 | ross | 2016-03-21 16:19:18 -0600 (Mon, 21 Mar 2016) | 1 line
+
+Added initial attempt at I2C request handling.
+------------------------------------------------------------------------
+r913 | ross | 2016-03-15 23:48:25 -0600 (Tue, 15 Mar 2016) | 2 lines
+
+Adding GalacticArachnidWebServer.
+
+------------------------------------------------------------------------
+
+
+===================== GardenSpinner ====================
+              1065     1054 ross         ../Arduino/GardenSpinner/GardenSpinner.ino
+              1065     1054 ross         ../Arduino/GardenSpinner
+Status against revision:   1065
+------------------------------------------------------------------------
+r1054 | ross | 2019-11-27 09:02:40 -0700 (Wed, 27 Nov 2019) | 1 line
+
+Added mapping for the rose garden at Winter Garden aGlow 2019.  Turned off gamma correction because the LED Christmas light strings have a very different brightness curve.  Changed lamp min intensity from 48 to 64 for the same reason.
+------------------------------------------------------------------------
+r1053 | ross | 2019-11-26 12:59:03 -0700 (Tue, 26 Nov 2019) | 2 lines
+
+Disabled simulated measurements.  Works ok with a flower widget.
+
+------------------------------------------------------------------------
+r1052 | ross | 2019-11-26 12:13:43 -0700 (Tue, 26 Nov 2019) | 1 line
+
+Basic functionality is working.  Not yet tested with a widget.
+------------------------------------------------------------------------
+r1051 | ross | 2019-11-26 07:33:53 -0700 (Tue, 26 Nov 2019) | 1 line
+
+Removed unneeded code.  Radio configured for auto ack.  Updated widget header layout.  Fixed up some stuff.  Still haven't tried compiling it.
+------------------------------------------------------------------------
+r1050 | ross | 2019-11-26 07:11:21 -0700 (Tue, 26 Nov 2019) | 1 line
+
+Code might be complete.
+------------------------------------------------------------------------
+r1049 | ross | 2019-11-26 06:05:47 -0700 (Tue, 26 Nov 2019) | 2 lines
+
+Adding GardenSpinner, which is nowhere near done yet.
+
+------------------------------------------------------------------------
+
+
+===================== GayLynnsHolidayLights ====================
+              1063     1063 ross         ../Arduino/GayLynnsHolidayLights/sequenceDefinition.h
+              1063     1063 ross         ../Arduino/GayLynnsHolidayLights/GayLynnsHolidayLights.ino
+              1063     1063 ross         ../Arduino/GayLynnsHolidayLights/patternConfigurations.h
+              1063     1063 ross         ../Arduino/GayLynnsHolidayLights
+Status against revision:   1065
+------------------------------------------------------------------------
+r1063 | ross | 2022-02-27 14:13:55 -0700 (Sun, 27 Feb 2022) | 1 line
+
+Added Ukraine Block (3) pattern.
+------------------------------------------------------------------------
+r1055 | ross | 2019-12-09 07:17:07 -0700 (Mon, 09 Dec 2019) | 1 line
+
+Fixed presets.
+------------------------------------------------------------------------
+r1001 | ross | 2016-11-28 23:03:10 -0700 (Mon, 28 Nov 2016) | 1 line
+
+Added new xmas patterns.  Renamed patternDefinitions.h to patternConfigurations.h.  Added saturation values to multi-wave configurations.
+------------------------------------------------------------------------
+r991 | ross | 2016-10-23 21:37:31 -0600 (Sun, 23 Oct 2016) | 2 lines
+
+Adding GayLynnsHolidayLights.
+
+------------------------------------------------------------------------
+
+
+===================== HCSR04Test ====================
+               962      962 ross         ../Arduino/HCSR04Test/HCSR04Test.ino
+               962      962 ross         ../Arduino/HCSR04Test
+Status against revision:   1065
+------------------------------------------------------------------------
+r962 | ross | 2016-08-22 21:49:56 -0600 (Mon, 22 Aug 2016) | 1 line
+
+Added print of values from both sensors.
+------------------------------------------------------------------------
+r958 | ross | 2016-07-08 12:16:52 -0600 (Fri, 08 Jul 2016) | 1 line
+
+Changed delay from 50 to 500 ms.
+------------------------------------------------------------------------
+r955 | ross | 2016-06-29 20:56:07 -0600 (Wed, 29 Jun 2016) | 2 lines
+
+Moving trunk to HCSR04Test project where it belongs.
+
+------------------------------------------------------------------------
+r953 | ross | 2016-06-29 20:52:14 -0600 (Wed, 29 Jun 2016) | 2 lines
+
+Adding HCSR04Test project.
+
+------------------------------------------------------------------------
+
+
+===================== HomePatioRGBStrips ====================
+               962      834 ross         ../Arduino/HomePatioRGBStrips/HomePatioRGBStrips.ino
+               962      834 ross         ../Arduino/HomePatioRGBStrips
+Status against revision:   1065
+------------------------------------------------------------------------
+r834 | ross | 2015-08-25 04:44:50 -0600 (Tue, 25 Aug 2015) | 1 line
+
+Minor tweak to red-white-blue.
+------------------------------------------------------------------------
+r812 | ross | 2015-07-04 20:47:03 -0600 (Sat, 04 Jul 2015) | 1 line
+
+Added Red, White, and Blue.
+------------------------------------------------------------------------
+r811 | ross | 2015-07-03 18:19:06 -0600 (Fri, 03 Jul 2015) | 1 line
+
+Added discrete 6-segment rainbow.
+------------------------------------------------------------------------
+r796 | ross | 2015-06-11 00:21:04 -0600 (Thu, 11 Jun 2015) | 1 line
+
+Updated to work with current version of FastLED.  Added intensity setting.
+------------------------------------------------------------------------
+r694 | ross | 2014-09-20 21:19:31 -0600 (Sat, 20 Sep 2014) | 2 lines
+
+Added rotating half blue and half orange using sin.
+
+------------------------------------------------------------------------
+r693 | ross | 2014-09-20 20:43:34 -0600 (Sat, 20 Sep 2014) | 1 line
+
+Added alternating blue and orange.
+------------------------------------------------------------------------
+r691 | ross | 2014-09-20 15:42:36 -0600 (Sat, 20 Sep 2014) | 2 lines
+
+Adding HomePatioRGBStrips.  Current version does just the slow rainbow rotate.
+
+------------------------------------------------------------------------
+
+
+===================== I2CMasterTest ====================
+               962      918 ross         ../Arduino/I2CMasterTest/I2CMasterTest.ino
+               962      918 ross         ../Arduino/I2CMasterTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r918 | ross | 2016-03-21 16:14:59 -0600 (Mon, 21 Mar 2016) | 3 lines
+
+Initial addition of I2CMasterTest.
+
+
+------------------------------------------------------------------------
+
+
+===================== I2CSlaveTest ====================
+               962      921 ross         ../Arduino/I2CSlaveTest/I2CSlaveTest.ino
+               962      921 ross         ../Arduino/I2CSlaveTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r921 | ross | 2016-03-21 19:19:15 -0600 (Mon, 21 Mar 2016) | 2 lines
+
+Initial addtion of I2CSlaveTest.
+
+------------------------------------------------------------------------
+
+
+===================== IBGInteractiveTreesPatternGenerator ====================
+              1027     1027 ross         ../Arduino/IBGInteractiveTreesPatternGenerator/IBGInteractiveTreesPatternGenerator.ino
+              1024     1024 ross         ../Arduino/IBGInteractiveTreesPatternGenerator
+Status against revision:   1065
+------------------------------------------------------------------------
+r1024 | ross | 2018-08-05 12:20:21 -0600 (Sun, 05 Aug 2018) | 2 lines
+
+Importing IBGInteractiveTreesPatternGenerator, which is mostly a clone of Tiltarama at this point.
+
+------------------------------------------------------------------------
+
+
+===================== InfinityMirrorBarTop ====================
+               962      840 ross         ../Arduino/InfinityMirrorBarTop/InfinityMirrorBarTop.ino
+               962      840 ross         ../Arduino/InfinityMirrorBarTop
+Status against revision:   1065
+------------------------------------------------------------------------
+r840 | ross | 2015-10-07 21:31:06 -0600 (Wed, 07 Oct 2015) | 1 line
+
+Pattern set selected by Reiley for a party on 9 Oct. 2015.
+------------------------------------------------------------------------
+r835 | ross | 2015-09-02 17:47:08 -0600 (Wed, 02 Sep 2015) | 2 lines
+
+Adding InfinityMirrorBarTop project.
+
+------------------------------------------------------------------------
+
+
+===================== Inova8x32DisplayRasterTest ====================
+              1064      856 ross         ../Arduino/Inova8x32DisplayRasterTest/Inova8x32DisplayRasterTest.ino
+              1064      852 ross         ../Arduino/Inova8x32DisplayRasterTest/Inova8x32DisplayRasterTest.h
+              1064      848 ross         ../Arduino/Inova8x32DisplayRasterTest/fontTable5x7.txt
+              1064     1064 ross         ../Arduino/Inova8x32DisplayRasterTest/pcbWords.txt
+              1064     1064 ross         ../Arduino/Inova8x32DisplayRasterTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r1064 | ross | 2022-05-14 12:52:05 -0600 (Sat, 14 May 2022) | 1 line
+
+Added pcbWords.txt.  Maybe I was thinking of making a sign for Pussy Cat Ball?
+------------------------------------------------------------------------
+r856 | ross | 2015-11-18 01:40:27 -0700 (Wed, 18 Nov 2015) | 1 line
+
+Reverted back to r855 (strobing).
+------------------------------------------------------------------------
+r855 | ross | 2015-11-18 01:32:56 -0700 (Wed, 18 Nov 2015) | 1 line
+
+STCP rising edge now corresponds to SHCP falling edge.  Works but is very slow.  Occasional glitch.
+------------------------------------------------------------------------
+r854 | ross | 2015-11-18 00:13:03 -0700 (Wed, 18 Nov 2015) | 1 line
+
+Changed to use OC2A toggle as a clock for SHCP.  STCP is clocked with SHCP (both rising edges together).  Display is very flakey.
+------------------------------------------------------------------------
+r853 | ross | 2015-11-17 08:04:27 -0700 (Tue, 17 Nov 2015) | 1 line
+
+Got USE_FAST_PIXEL_IDX_CALC to work.
+------------------------------------------------------------------------
+r852 | ross | 2015-11-15 20:43:10 -0700 (Sun, 15 Nov 2015) | 1 line
+
+untested changes to speed up pixel index calculations.
+------------------------------------------------------------------------
+r851 | ross | 2015-11-12 22:25:30 -0700 (Thu, 12 Nov 2015) | 1 line
+
+Playing around with different blinks and flashes.
+------------------------------------------------------------------------
+r850 | ross | 2015-11-12 21:32:32 -0700 (Thu, 12 Nov 2015) | 1 line
+
+Added blink based on millis.  Not working well.  Added dim.  Flickers but not really dimmer.
+------------------------------------------------------------------------
+r849 | ross | 2015-11-12 20:55:52 -0700 (Thu, 12 Nov 2015) | 1 line
+
+Now uses illuminationMode stuff.
+------------------------------------------------------------------------
+r848 | ross | 2015-11-11 21:04:27 -0700 (Wed, 11 Nov 2015) | 1 line
+
+Added URL to fontTable5x7.txt
+------------------------------------------------------------------------
+r847 | ross | 2015-11-11 21:03:09 -0700 (Wed, 11 Nov 2015) | 1 line
+
+added fontTable5x7.txt
+------------------------------------------------------------------------
+r845 | ross | 2015-11-11 00:39:32 -0700 (Wed, 11 Nov 2015) | 1 line
+
+Mostly works with multiple 8x32 panels.  Still needs some work.
+------------------------------------------------------------------------
+r843 | ross | 2015-11-08 21:50:06 -0700 (Sun, 08 Nov 2015) | 2 lines
+
+Initial commit of Inova8x32DisplayRasterTest.
+
+------------------------------------------------------------------------
+
+
+===================== Inova8x32DisplayTest ====================
+               962      846 ross         ../Arduino/Inova8x32DisplayTest/Inova8x32DisplayTest.ino
+               962      846 ross         ../Arduino/Inova8x32DisplayTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r846 | ross | 2015-11-11 00:46:43 -0700 (Wed, 11 Nov 2015) | 1 line
+
+Fixed walking row when multiple panels are used.  Changed back to 8x32 configuration.  Noted that multiple panels must be arranged horizontally.
+------------------------------------------------------------------------
+r844 | ross | 2015-11-11 00:39:13 -0700 (Wed, 11 Nov 2015) | 1 line
+
+Mostly works with multiple 8x32 panels.  Still needs some work.
+------------------------------------------------------------------------
+r842 | ross | 2015-11-08 18:11:03 -0700 (Sun, 08 Nov 2015) | 2 lines
+
+Initial commit of Inova8x32DisplayTest.
+
+------------------------------------------------------------------------
+
+
+===================== JohnsKaleidoscopeMirror ====================
+              1065      999 ross         ../Arduino/JohnsKaleidoscopeMirror/JohnsKaleidoscopeMirror.ino
+              1065     1065 ross         ../Arduino/JohnsKaleidoscopeMirror/JohnsKaleidoscopeMirror.ino.arduino
+              1065      998 ross         ../Arduino/JohnsKaleidoscopeMirror/sequenceDefinition.h
+              1065     1065 ross         ../Arduino/JohnsKaleidoscopeMirror/colorDefs.txt
+              1065      998 ross         ../Arduino/JohnsKaleidoscopeMirror/patternDefinitions.h
+              1065     1065 ross         ../Arduino/JohnsKaleidoscopeMirror
+Status against revision:   1065
+------------------------------------------------------------------------
+r1065 | ross | 2022-05-14 13:06:41 -0600 (Sat, 14 May 2022) | 1 line
+
+Added colorDefs.txt for reference.  Also add the original Arduino sketch.  If I am remembering the BeforeTime correctly, JKM was first implemented on an Arduino and ran automatically for its debut at the 2014 Black Friday Pajama Party.  Later, it was re-implemented on an ESP8266 to allow control via a web page on a phone.  That might have been for a New Years Eve party.
+------------------------------------------------------------------------
+r999 | ross | 2016-11-27 13:33:09 -0700 (Sun, 27 Nov 2016) | 1 line
+
+Added John's WiFi ssid and passkey.
+------------------------------------------------------------------------
+r998 | ross | 2016-11-25 17:10:49 -0700 (Fri, 25 Nov 2016) | 1 line
+
+Rewritten to use PixelPatternFramework and ESP8266 web page.
+------------------------------------------------------------------------
+r772 | ross | 2015-03-31 22:09:39 -0600 (Tue, 31 Mar 2015) | 1 line
+
+Made number of panels flexible.
+------------------------------------------------------------------------
+r768 | ross | 2014-12-30 23:56:46 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Clarified a few comments.
+------------------------------------------------------------------------
+r767 | ross | 2014-12-30 23:49:23 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Moved boundedByPanel from colorWaveParams to multiWaveParams.
+------------------------------------------------------------------------
+r766 | ross | 2014-12-30 23:34:03 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Random fg and bg colors are no longer complementary but can be +/- 90, +/- 120, or 180 degrees around the color wheel.  Aligned spacing in pattern param struct definitions.
+------------------------------------------------------------------------
+r765 | ross | 2014-12-30 22:37:05 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Cleanup.  Commented pattern definitions.  Removed test unicorn diarrhea pattern.
+------------------------------------------------------------------------
+r764 | ross | 2014-12-30 21:56:15 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Parameterized the rainbow pattern and added unicorn enema.
+------------------------------------------------------------------------
+r763 | ross | 2014-12-30 21:12:09 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Now works again with comments and cleanup.
+------------------------------------------------------------------------
+r762 | ross | 2014-12-30 20:03:29 -0700 (Tue, 30 Dec 2014) | 1 line
+
+Added comments.  First pass.
+------------------------------------------------------------------------
+r760 | ross | 2014-12-24 12:00:43 -0700 (Wed, 24 Dec 2014) | 1 line
+
+DATA_PIN defined for John's installation.
+------------------------------------------------------------------------
+r759 | ross | 2014-11-28 12:31:51 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Proposed pattern set for the Black Friday Pajama Party 2014 is done.
+------------------------------------------------------------------------
+r758 | ross | 2014-11-28 12:08:44 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Debugged splitRotation and added some configs for it.
+------------------------------------------------------------------------
+r757 | ross | 2014-11-28 11:39:26 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Added splitRotation.  Not compiled yet.
+------------------------------------------------------------------------
+r756 | ross | 2014-11-28 02:45:13 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Just a little bit of turd polishing before bedtime.
+------------------------------------------------------------------------
+r755 | ross | 2014-11-28 02:26:30 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Fixed up the Vikings colors.
+------------------------------------------------------------------------
+r754 | ross | 2014-11-28 02:12:09 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Tuned up some patterns and added some really trippy ones.
+------------------------------------------------------------------------
+r753 | ross | 2014-11-28 01:38:36 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Added half wave option to multiWave.
+------------------------------------------------------------------------
+r752 | ross | 2014-11-28 01:01:22 -0700 (Fri, 28 Nov 2014) | 1 line
+
+Converted multiWave to HSV.
+------------------------------------------------------------------------
+r751 | ross | 2014-11-27 22:29:07 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added boundedByPanel option to multiWave.
+------------------------------------------------------------------------
+r750 | ross | 2014-11-27 21:53:17 -0700 (Thu, 27 Nov 2014) | 1 line
+
+multiWave waveforms now bounded within a panel instead of across all LEDs.
+------------------------------------------------------------------------
+r749 | ross | 2014-11-27 21:46:12 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Fixed up some pattern definitions.
+------------------------------------------------------------------------
+r748 | ross | 2014-11-27 20:39:34 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Changed multiWave to recalculate all leds each time an update is needed.  There was not enough memory to store multiple copies of the leds.
+------------------------------------------------------------------------
+r747 | ross | 2014-11-27 19:28:42 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Removed colorWave.  Did a little cleanup
+------------------------------------------------------------------------
+r746 | ross | 2014-11-27 19:19:35 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Before removing colorWave.
+------------------------------------------------------------------------
+r745 | ross | 2014-11-27 19:19:08 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Enabled all patterns, but ran out of memory.
+------------------------------------------------------------------------
+r744 | ross | 2014-11-27 19:03:34 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added some multiWave patterns.
+------------------------------------------------------------------------
+r743 | ross | 2014-11-27 18:47:12 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added square wave, triangle wave, quadratic easing, and cubic easing waveforms to multiWave.
+------------------------------------------------------------------------
+r742 | ross | 2014-11-27 18:04:44 -0700 (Thu, 27 Nov 2014) | 1 line
+
+multiWave is working.
+------------------------------------------------------------------------
+r741 | ross | 2014-11-27 17:16:16 -0700 (Thu, 27 Nov 2014) | 1 line
+
+First pass at adding multiWave.
+------------------------------------------------------------------------
+r740 | ross | 2014-11-27 16:17:48 -0700 (Thu, 27 Nov 2014) | 1 line
+
+colorWave now uses sin8.  Added direction option to colorWave.
+------------------------------------------------------------------------
+r739 | ross | 2014-11-27 15:32:43 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added numWaves to colorWave.
+------------------------------------------------------------------------
+r738 | ross | 2014-11-27 15:23:39 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Converted BSU wave to colorWave.
+------------------------------------------------------------------------
+r737 | ross | 2014-11-27 14:41:26 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added random sparkle.
+------------------------------------------------------------------------
+r736 | ross | 2014-11-27 14:11:22 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Added density to sparkle.
+------------------------------------------------------------------------
+r735 | ross | 2014-11-27 13:41:30 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Converted redDot to movingDot.
+------------------------------------------------------------------------
+r734 | ross | 2014-11-27 13:13:51 -0700 (Thu, 27 Nov 2014) | 1 line
+
+Separated out pattern params.
+------------------------------------------------------------------------
+r733 | ross | 2014-11-27 00:42:06 -0700 (Thu, 27 Nov 2014) | 1 line
+
+As installed on Wednesday 26 Nov.  Holy fuck but it is cool.
+------------------------------------------------------------------------
+r732 | ross | 2014-11-26 22:38:18 -0700 (Wed, 26 Nov 2014) | 1 line
+
+Split all patterns except BSU into thirds.  Fixed transition, removed delay.
+------------------------------------------------------------------------
+r731 | ross | 2014-11-26 20:37:34 -0700 (Wed, 26 Nov 2014) | 1 line
+
+Debugged table-defined pattern set.
+------------------------------------------------------------------------
+r730 | ross | 2014-11-23 23:01:57 -0700 (Sun, 23 Nov 2014) | 3 lines
+
+Adding JohnsKaleidoscopeMirror.
+
+
+------------------------------------------------------------------------
+
+
+===================== JohnsTripperStick ====================
+               985      960 ross         ../Arduino/JohnsTripperStick/colorDefs.txt
+               985      960 ross         ../Arduino/JohnsTripperStick/patternDefinitions.h
+               985      960 ross         ../Arduino/JohnsTripperStick/implementationConfig.h
+               985      960 ross         ../Arduino/JohnsTripperStick/sequenceDefinition.h
+               985      960 ross         ../Arduino/JohnsTripperStick/JohnsTripperStick.ino
+               985      960 ross         ../Arduino/JohnsTripperStick
+Status against revision:   1065
+------------------------------------------------------------------------
+r960 | ross | 2016-07-09 19:32:30 -0600 (Sat, 09 Jul 2016) | 2 lines
+
+Adding JohnsTripperStick.
+
+------------------------------------------------------------------------
+
+
+===================== LCDCharDisplayTest ====================
+              1065     1005 ross         ../Arduino/LCDCharDisplayTest/LCDCharDisplayTest.ino
+              1065     1005 ross         ../Arduino/LCDCharDisplayTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r1005 | ross | 2016-12-05 19:18:10 -0700 (Mon, 05 Dec 2016) | 2 lines
+
+Adding LCDCharDisplayTest.
+
+------------------------------------------------------------------------
+
+
+===================== LampshadeHat ====================
+               962      942 ross         ../Arduino/LampshadeHat/LampshadeHat.ino
+               962      942 ross         ../Arduino/LampshadeHat
+Status against revision:   1065
+------------------------------------------------------------------------
+r942 | ross | 2016-04-08 22:45:24 -0600 (Fri, 08 Apr 2016) | 1 line
+
+New pattern timing for Sensory Illumination 2016.
+------------------------------------------------------------------------
+r794 | ross | 2015-04-26 20:12:02 -0600 (Sun, 26 Apr 2015) | 1 line
+
+Added basic power management and low-battery shutdown.  Added some more patterns.  Good enough to use at a party now.
+------------------------------------------------------------------------
+r793 | ross | 2015-04-26 18:53:47 -0600 (Sun, 26 Apr 2015) | 1 line
+
+Finished porting from TripperStickII.  Added reading and printing vBatt.  Added patterns.
+------------------------------------------------------------------------
+r792 | ross | 2015-04-26 14:19:26 -0600 (Sun, 26 Apr 2015) | 2 lines
+
+Adding LampshadeHat project.
+
+------------------------------------------------------------------------
+
+
+===================== NRF24Scanner ====================
+               962      903 ross         ../Arduino/NRF24Scanner/NRF24Scanner.ino
+               962      903 ross         ../Arduino/NRF24Scanner
+Status against revision:   1065
+------------------------------------------------------------------------
+r903 | ross | 2016-02-15 22:59:47 -0700 (Mon, 15 Feb 2016) | 1 line
+
+NRF24Scanner.ino:  Added URL of where I obtained the thing.
+------------------------------------------------------------------------
+r902 | ross | 2016-02-15 22:55:41 -0700 (Mon, 15 Feb 2016) | 2 lines
+
+Renaming nrf24Scanner.ino to NRF24Scanner.ino
+
+------------------------------------------------------------------------
+r901 | ross | 2016-02-15 22:53:22 -0700 (Mon, 15 Feb 2016) | 2 lines
+
+Renaming nrf24Scanner to NRF24Scanner because sometimes the OC tendencies get the best of me.
+
+------------------------------------------------------------------------
+r900 | ross | 2016-02-15 17:03:38 -0700 (Mon, 15 Feb 2016) | 2 lines
+
+Adding nrf24Scanner.
+
+------------------------------------------------------------------------
+
+
+===================== OctoFlashy ====================
+              1065     1056 ross         ../Arduino/OctoFlashy/OctoFlashy.ino
+              1065     1056 ross         ../Arduino/OctoFlashy
+Status against revision:   1065
+------------------------------------------------------------------------
+r1056 | ross | 2020-11-29 21:38:36 -0700 (Sun, 29 Nov 2020) | 1 line
+
+Added debug print enhancements that were left uncommitted on sean.
+------------------------------------------------------------------------
+r1048 | ross | 2019-11-09 11:51:50 -0700 (Sat, 09 Nov 2019) | 2 lines
+
+Made debug print actually work.  (Enabling debug print disables DMX.)  Hacked, in a most ugly way, to treat Baton (widget 12) as Tilt-2 (widget 2).  Made compatible with current Illumicone widget comms (channel 84, 1Mbps).
+
+------------------------------------------------------------------------
+r1046 | ross | 2018-11-12 21:58:54 -0700 (Mon, 12 Nov 2018) | 1 line
+
+Changed for IBG:  NUM_LAMPS from 9 to 5, LAMP_MIN_INTENSITY from 24 to 128, disabled ENABLE_COLOR_WRAPAROUND, enabled SKIP_DIMMER_FOURTH_CHANNEL.  Fixed skip of dimmer fourth channel.
+------------------------------------------------------------------------
+r1045 | ross | 2018-11-12 09:34:43 -0700 (Mon, 12 Nov 2018) | 1 line
+
+Fixed swap of pitch and roll for Tilt-Test (break was missing).
+------------------------------------------------------------------------
+r1044 | ross | 2018-11-11 19:25:38 -0700 (Sun, 11 Nov 2018) | 2 lines
+
+Removed unneeded IMU values.  Cleaned up handling of cheap-o "PAR" lamp and unused dimmer fourth channel.  Tilt-1 now controls lamp intensity while Tilt-2 controls color.  Moved IBG Tilt-x wigdets to channel 97 to avoid any interference to/from Illumicone.
+
+------------------------------------------------------------------------
+r1043 | ross | 2018-11-05 22:50:49 -0700 (Mon, 05 Nov 2018) | 1 line
+
+Swapped pitch and roll for Tilt1 for testing.  (Eventually need to handle the values from the tilt widgets appropriately.)
+------------------------------------------------------------------------
+r1042 | ross | 2018-11-05 22:45:03 -0700 (Mon, 05 Nov 2018) | 2 lines
+
+Removed local sensor support.
+
+------------------------------------------------------------------------
+r1041 | ross | 2018-11-05 22:39:13 -0700 (Mon, 05 Nov 2018) | 1 line
+
+Modified to use IBG Tilt widgets.
+------------------------------------------------------------------------
+r1040 | ross | 2018-11-03 16:42:44 -0600 (Sat, 03 Nov 2018) | 1 line
+
+Modified for compatibility with Rainstick that sends 13 values.
+------------------------------------------------------------------------
+r1037 | ross | 2018-10-24 16:07:47 -0600 (Wed, 24 Oct 2018) | 1 line
+
+Added lamp test.  Fourth control channel not used if DMX_NUM_CHANNELS_PER_LAMP is not 4.
+------------------------------------------------------------------------
+r1035 | ross | 2018-10-16 22:02:54 -0600 (Tue, 16 Oct 2018) | 1 line
+
+Added ACK_WIDGET_PACKETS.
+------------------------------------------------------------------------
+r1034 | ross | 2018-09-30 09:31:48 -0600 (Sun, 30 Sep 2018) | 1 line
+
+Added support for FourPlay widgets.
+------------------------------------------------------------------------
+r1033 | ross | 2018-09-29 18:31:29 -0600 (Sat, 29 Sep 2018) | 1 line
+
+Added flashing when sound level from widget (Rainstick) exceeds a specified threshold.
+------------------------------------------------------------------------
+r1032 | ross | 2018-09-29 15:30:30 -0600 (Sat, 29 Sep 2018) | 1 line
+
+Added wdt_reset() call in pollRadio.
+------------------------------------------------------------------------
+r1031 | ross | 2018-09-28 23:48:36 -0600 (Fri, 28 Sep 2018) | 1 line
+
+Added code for radio and Rainstick widget support.  Compiles.  Untested.
+------------------------------------------------------------------------
+r1030 | ross | 2018-09-26 23:34:46 -0600 (Wed, 26 Sep 2018) | 1 line
+
+Added fourth color so that red and blue can be combined.  Separated maximum tilt into maximum pitch and maximum roll degrees.
+------------------------------------------------------------------------
+r1029 | ross | 2018-09-26 23:07:35 -0600 (Wed, 26 Sep 2018) | 2 lines
+
+Adding OctoFlashy project.
+
+------------------------------------------------------------------------
+
+
+===================== PastaSaves ====================
+               962      801 ross         ../Arduino/PastaSaves/PastaSaves.ino
+               962      801 ross         ../Arduino/PastaSaves
+Status against revision:   1065
+------------------------------------------------------------------------
+r801 | ross | 2015-06-16 21:24:24 -0600 (Tue, 16 Jun 2015) | 2 lines
+
+Finally getting around to adding PastaSaves to the Arduino project.
+
+------------------------------------------------------------------------
+
+
+===================== Permanence ====================
+              1009     1009 ross         ../Arduino/Permanence/Permanence.ino
+              1008     1007 ross         ../Arduino/Permanence
+Status against revision:   1065
+------------------------------------------------------------------------
+r1007 | ross | 2017-06-11 15:30:51 -0600 (Sun, 11 Jun 2017) | 1 line
+
+Fine tuned heartbeat and glint background color for James.  This is the version I gave him for What The Festival.
+------------------------------------------------------------------------
+r1006 | ross | 2017-06-11 13:13:52 -0600 (Sun, 11 Jun 2017) | 2 lines
+
+Adding Permanence, the code for James Sharp's project.
+
+------------------------------------------------------------------------
+
+
+===================== PixelPatternFramework ====================
+              1065      947 ross         ../Arduino/PixelPatternFramework/AutoShowSelector.h
+              1065      893 ross         ../Arduino/PixelPatternFramework/SplitRotation.h
+              1065     1002 ross         ../Arduino/PixelPatternFramework/MultiWave.h
+              1065      981 ross         ../Arduino/PixelPatternFramework/PixelPatternController.cpp
+              1065      979 ross         ../Arduino/PixelPatternFramework/PatternSelector.h
+              1065      881 ross         ../Arduino/PixelPatternFramework/PixelPattern.h
+              1065      975 ross         ../Arduino/PixelPatternFramework/ExternalControlSelector.h
+              1065      893 ross         ../Arduino/PixelPatternFramework/Sparkle.cpp
+              1065      893 ross         ../Arduino/PixelPatternFramework/Rainbow.cpp
+              1065      946 ross         ../Arduino/PixelPatternFramework/PixelSet.h
+              1065      888 ross         ../Arduino/PixelPatternFramework/patternHelpers.h
+              1065      893 ross         ../Arduino/PixelPatternFramework/MovingDot.cpp
+              1065      997 ross         ../Arduino/PixelPatternFramework/Esp8266WebPage.cpp
+              1065      975 ross         ../Arduino/PixelPatternFramework/AutoShowSelector.cpp
+              1065      893 ross         ../Arduino/PixelPatternFramework/SplitRotation.cpp
+              1065      975 ross         ../Arduino/PixelPatternFramework/PatternSequence.h
+              1065     1002 ross         ../Arduino/PixelPatternFramework/MultiWave.cpp
+              1065      883 ross         ../Arduino/PixelPatternFramework/SolidColor.h
+              1065      975 ross         ../Arduino/PixelPatternFramework/PatternSelector.cpp
+              1065      975 ross         ../Arduino/PixelPatternFramework/PushbuttonSelector.h
+              1065      992 ross         ../Arduino/PixelPatternFramework/Blocks.h
+              1065      894 ross         ../Arduino/PixelPatternFramework/Glint.h
+              1065      975 ross         ../Arduino/PixelPatternFramework/ExternalControlSelector.cpp
+              1065      975 ross         ../Arduino/PixelPatternFramework/pixelPatternFrameworkTypes.h
+              1065      981 ross         ../Arduino/PixelPatternFramework/PixelPatternController.h
+              1065      880 ross         ../Arduino/PixelPatternFramework/PixelSet.cpp
+              1065      888 ross         ../Arduino/PixelPatternFramework/patternHelpers.cpp
+              1065     1002 ross         ../Arduino/PixelPatternFramework/stockPatternConfigurations.h
+              1065      893 ross         ../Arduino/PixelPatternFramework/Sparkle.h
+              1065      893 ross         ../Arduino/PixelPatternFramework/Rainbow.h
+              1065      979 ross         ../Arduino/PixelPatternFramework/PatternSequence.cpp
+              1065      883 ross         ../Arduino/PixelPatternFramework/SolidColor.cpp
+              1065      893 ross         ../Arduino/PixelPatternFramework/MovingDot.h
+              1065      975 ross         ../Arduino/PixelPatternFramework/PushbuttonSelector.cpp
+              1065      896 ross         ../Arduino/PixelPatternFramework/pixelPatternFactory.h
+              1065      889 ross         ../Arduino/PixelPatternFramework/Blocks.cpp
+              1065      997 ross         ../Arduino/PixelPatternFramework/Esp8266WebPage.h
+              1065      894 ross         ../Arduino/PixelPatternFramework/Glint.cpp
+              1065     1002 ross         ../Arduino/PixelPatternFramework
+Status against revision:   1065
+------------------------------------------------------------------------
+r1002 | ross | 2016-11-28 23:04:35 -0700 (Mon, 28 Nov 2016) | 1 line
+
+Added saturation values to MultiWave class.
+------------------------------------------------------------------------
+r997 | ross | 2016-11-25 17:09:42 -0700 (Fri, 25 Nov 2016) | 1 line
+
+Fixed (hopefully) the problem of not reconnecting to the WiFi network with updated configuration (static IP address or DHCP enabled).  Added hostname.
+------------------------------------------------------------------------
+r992 | ross | 2016-10-23 21:41:05 -0600 (Sun, 23 Oct 2016) | 1 line
+
+Added redGreenXmasLights to stock patterns.  Added title text to Esp8266WebPage.
+------------------------------------------------------------------------
+r989 | ross | 2016-10-23 14:56:15 -0600 (Sun, 23 Oct 2016) | 1 line
+
+Fixed divide-by-zero bug in MultiWave.  Improved blending in MultiWave.  Made multiWave3ClusterFuck faster and better.  Increased dwell and density of sparkleBlueBSU.
+------------------------------------------------------------------------
+r985 | ross | 2016-10-20 17:42:55 -0600 (Thu, 20 Oct 2016) | 1 line
+
+Added stock pattern bsuBlock3.
+------------------------------------------------------------------------
+r983 | ross | 2016-10-20 15:37:31 -0600 (Thu, 20 Oct 2016) | 1 line
+
+Added support to Esp8266WebPage for static IP address.:
+------------------------------------------------------------------------
+r981 | ross | 2016-10-20 13:03:28 -0600 (Thu, 20 Oct 2016) | 1 line
+
+Added PixelPatternController::getUpdateLeds and made associated changes to support it.  Added Esp8266WebPage class.
+------------------------------------------------------------------------
+r979 | ross | 2016-10-19 00:21:49 -0600 (Wed, 19 Oct 2016) | 1 line
+
+Added getPatternNum to PatternSelector.  Pattern names now retrieved from SRAM instead of program flash.  Increased density and dwell of sparkleBlueBSU.
+------------------------------------------------------------------------
+r975 | ross | 2016-10-17 21:50:52 -0600 (Mon, 17 Oct 2016) | 13 lines
+
+Moved readPatternDefinitionFromFlash from PixelPatternController to
+PatternSequence.  Added readCurrentPatternDefinitionFromFlash.  Both functions
+support the new patternName.
+
+Added patternName to PatternDef.
+
+Moved patternNum from derived classes to PatternSelector.  Added virtual,
+do-nothing setPatternNum to PatternSelector.
+
+Renamed PatternSequence::patternNum to currentPatternNum.
+
+Renamed stockPatternDefinitions.h to stockPatternConfigurations.h.
+
+------------------------------------------------------------------------
+r973 | ross | 2016-10-17 10:20:54 -0600 (Mon, 17 Oct 2016) | 1 line
+
+Set end hue of solidBSUOranger to HUE_BSU_ORANGER.
+------------------------------------------------------------------------
+r972 | ross | 2016-10-15 18:05:29 -0600 (Sat, 15 Oct 2016) | 1 line
+
+Added BSU oranger colors.
+------------------------------------------------------------------------
+r970 | ross | 2016-10-15 17:01:01 -0600 (Sat, 15 Oct 2016) | 1 line
+
+update now returns true if any pixels were changed.
+------------------------------------------------------------------------
+r967 | ross | 2016-10-14 17:33:37 -0600 (Fri, 14 Oct 2016) | 1 line
+
+Added MovingDot allOff pattern.
+------------------------------------------------------------------------
+r966 | ross | 2016-10-14 16:30:52 -0600 (Fri, 14 Oct 2016) | 1 line
+
+Fixed readPatternDefinitionFromFlash to work on ESP8266 by accommodating dword-size patternConfig pointers.
+------------------------------------------------------------------------
+r963 | ross | 2016-10-12 17:43:38 -0600 (Wed, 12 Oct 2016) | 1 line
+
+Fixed type of pDurationMs in readPatternDefinitionFromFlash.
+------------------------------------------------------------------------
+r947 | ross | 2016-04-16 18:51:52 -0600 (Sat, 16 Apr 2016) | 1 line
+
+Implemented PushbuttonSelector.
+------------------------------------------------------------------------
+r946 | ross | 2016-04-16 16:16:20 -0600 (Sat, 16 Apr 2016) | 3 lines
+
+Did some cleanup.  Added PushbuttonSelector class shell.
+
+
+------------------------------------------------------------------------
+r937 | ross | 2016-03-30 22:23:32 -0600 (Wed, 30 Mar 2016) | 3 lines
+
+Commented out EEPROM stuff (not working with Arduino 1.6.8) and free memory
+stuff (doesn't work with Teensy).
+
+------------------------------------------------------------------------
+r927 | ross | 2016-03-23 01:32:22 -0600 (Wed, 23 Mar 2016) | 1 line
+
+ExternalControlSelector now sets automatic mode correclty.
+------------------------------------------------------------------------
+r926 | ross | 2016-03-23 01:04:49 -0600 (Wed, 23 Mar 2016) | 1 line
+
+Removed button support from PixelPatternController.
+------------------------------------------------------------------------
+r925 | ross | 2016-03-22 23:08:31 -0600 (Tue, 22 Mar 2016) | 1 line
+
+Fixed Block comment in stock pattern defs.
+------------------------------------------------------------------------
+r923 | ross | 2016-03-22 22:21:06 -0600 (Tue, 22 Mar 2016) | 1 line
+
+Added ExternalControlSelector.  Still needs some debugging.
+------------------------------------------------------------------------
+r917 | ross | 2016-03-20 22:04:17 -0600 (Sun, 20 Mar 2016) | 1 line
+
+Commented out DMXSimple include.
+------------------------------------------------------------------------
+r910 | ross | 2016-02-18 00:40:18 -0700 (Thu, 18 Feb 2016) | 1 line
+
+Fixed bugs.  Works now but needs more testing and maybe cleanup of prints.
+------------------------------------------------------------------------
+r909 | ross | 2016-02-17 22:55:48 -0700 (Wed, 17 Feb 2016) | 1 line
+
+Compiles but hangs or resets upon startup.
+------------------------------------------------------------------------
+r908 | ross | 2016-02-17 22:45:56 -0700 (Wed, 17 Feb 2016) | 1 line
+
+Moved pattern selection out of PixelPatternController.  Not compiled yet.
+------------------------------------------------------------------------
+r907 | ross | 2016-02-16 23:05:32 -0700 (Tue, 16 Feb 2016) | 1 line
+
+Replaced primary and ambience patterns with an array of patterns.
+------------------------------------------------------------------------
+r905 | ross | 2016-02-16 22:15:20 -0700 (Tue, 16 Feb 2016) | 2 lines
+
+Fixed bug that caused reset when ambiencePixelSet not set.
+
+------------------------------------------------------------------------
+r904 | ross | 2016-02-16 21:41:48 -0700 (Tue, 16 Feb 2016) | 2 lines
+
+Added PatternSequence and PatternSelector classes.  Compiles but untested.
+
+------------------------------------------------------------------------
+r898 | ross | 2016-01-03 09:59:17 -0700 (Sun, 03 Jan 2016) | 1 line
+
+Added remainder of stock MultiWave patterns.
+------------------------------------------------------------------------
+r896 | ross | 2016-01-02 22:36:44 -0700 (Sat, 02 Jan 2016) | 1 line
+
+Added MultiWave.
+------------------------------------------------------------------------
+r894 | ross | 2015-12-31 12:44:53 -0700 (Thu, 31 Dec 2015) | 1 line
+
+Added original implementation comment to Glint.
+------------------------------------------------------------------------
+r893 | ross | 2015-12-31 12:37:50 -0700 (Thu, 31 Dec 2015) | 1 line
+
+Added SplitRotation.
+------------------------------------------------------------------------
+r891 | ross | 2015-12-30 15:35:24 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added MovingDot.
+------------------------------------------------------------------------
+r889 | ross | 2015-12-30 14:40:44 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added Glint pattern.  Added missing pattern cpp files.
+------------------------------------------------------------------------
+r888 | ross | 2015-12-30 14:11:54 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added Rainbow.
+------------------------------------------------------------------------
+r886 | ross | 2015-12-30 01:04:47 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added Blocks.
+------------------------------------------------------------------------
+r884 | ross | 2015-12-29 23:17:50 -0700 (Tue, 29 Dec 2015) | 1 line
+
+Added dwellMs parameter to Sparkle.
+------------------------------------------------------------------------
+r883 | ross | 2015-12-29 22:49:06 -0700 (Tue, 29 Dec 2015) | 1 line
+
+Added Sparkle.  Bug fixes.
+------------------------------------------------------------------------
+r882 | ross | 2015-12-29 19:51:16 -0700 (Tue, 29 Dec 2015) | 1 line
+
+Created headers for patterns.
+------------------------------------------------------------------------
+r881 | ross | 2015-12-29 18:52:21 -0700 (Tue, 29 Dec 2015) | 1 line
+
+Added configIsInFlash arg to pattern class init function.  Pattern duration is now specified in milliseconds.
+------------------------------------------------------------------------
+r880 | ross | 2015-12-29 18:20:28 -0700 (Tue, 29 Dec 2015) | 2 lines
+
+Adding PixelPatternFramework library.
+
+------------------------------------------------------------------------
+
+
+===================== PixelPatternFrameworkTest ====================
+               962      948 ross         ../Arduino/PixelPatternFrameworkTest/PixelPatternFrameworkTest.ino
+               962      948 ross         ../Arduino/PixelPatternFrameworkTest/implementationConfig.h
+               962      906 ross         ../Arduino/PixelPatternFrameworkTest/sequenceDefinition.h
+               962      885 ross         ../Arduino/PixelPatternFrameworkTest/colorDefs.txt
+               962      887 ross         ../Arduino/PixelPatternFrameworkTest/patternDefinitions.h
+               962      948 ross         ../Arduino/PixelPatternFrameworkTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r948 | ross | 2016-04-16 19:04:42 -0600 (Sat, 16 Apr 2016) | 1 line
+
+Added PushbuttonSelector.
+------------------------------------------------------------------------
+r943 | ross | 2016-04-13 20:59:17 -0600 (Wed, 13 Apr 2016) | 1 line
+
+Commented out patternController.enableModeButton.
+------------------------------------------------------------------------
+r911 | ross | 2016-02-18 00:41:01 -0700 (Thu, 18 Feb 2016) | 1 line
+
+Modified for debugging PatternSelector stuff.  Works but needs cleanup.
+------------------------------------------------------------------------
+r906 | ross | 2016-02-16 23:05:00 -0700 (Tue, 16 Feb 2016) | 1 line
+
+Now calls patternController.addSequence().
+------------------------------------------------------------------------
+r899 | ross | 2016-01-03 10:00:24 -0700 (Sun, 03 Jan 2016) | 1 line
+
+Added remainder of stock MultiWave patterns to sequence.
+------------------------------------------------------------------------
+r897 | ross | 2016-01-02 22:36:55 -0700 (Sat, 02 Jan 2016) | 1 line
+
+Added MultiWave pattern.
+------------------------------------------------------------------------
+r895 | ross | 2015-12-31 12:45:31 -0700 (Thu, 31 Dec 2015) | 1 line
+
+Added SplitRotation patterns.  Modified config for 3 panels of 28 pixels each.
+------------------------------------------------------------------------
+r892 | ross | 2015-12-30 15:35:56 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added MovingDot pattern.
+------------------------------------------------------------------------
+r890 | ross | 2015-12-30 14:41:39 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added Rainbow and Glint patterns.
+------------------------------------------------------------------------
+r887 | ross | 2015-12-30 01:05:17 -0700 (Wed, 30 Dec 2015) | 1 line
+
+Added Blocks patterns.
+------------------------------------------------------------------------
+r885 | ross | 2015-12-29 23:22:35 -0700 (Tue, 29 Dec 2015) | 2 lines
+
+Adding PixelPatternFrameworkTest.
+
+------------------------------------------------------------------------
+
+
+===================== RGBCalibrate ====================
+              1065     1036 ross         ../Arduino/RGBCalibrate/RGBCalibrate.ino
+              1065     1036 ross         ../Arduino/RGBCalibrate
+Status against revision:   1065
+------------------------------------------------------------------------
+r1036 | ross | 2018-10-21 22:03:21 -0600 (Sun, 21 Oct 2018) | 1 line
+
+Added ARDUINO_SAMD_ZERO definition to make Sparkfun ATSAMD21G R3 board work.
+------------------------------------------------------------------------
+r959 | ross | 2016-07-08 12:18:19 -0600 (Fri, 08 Jul 2016) | 1 line
+
+Added comment about Joule strips.
+------------------------------------------------------------------------
+r870 | ross | 2015-11-29 12:15:48 -0700 (Sun, 29 Nov 2015) | 1 line
+
+Disabled power-on delay.  Added GRB for 10 pixel/m strips.  Added comments for GRB strips.
+------------------------------------------------------------------------
+r800 | ross | 2015-06-16 21:08:20 -0600 (Tue, 16 Jun 2015) | 1 line
+
+Sets remaining LEDs white.
+------------------------------------------------------------------------
+r797 | ross | 2015-06-14 14:35:47 -0600 (Sun, 14 Jun 2015) | 1 line
+
+DMXSIMPLE in addLeds call.  WS2812B RGB.  Data pin now 2.
+------------------------------------------------------------------------
+r769 | ross | 2015-01-22 21:05:03 -0700 (Thu, 22 Jan 2015) | 2 lines
+
+Importing RGBCalibrate.
+
+------------------------------------------------------------------------
+
+
+===================== RGBStripColorMatch ====================
+              1065      944 ross         ../Arduino/RGBStripColorMatch/RGBStripColorMatch.ino
+              1065      944 ross         ../Arduino/RGBStripColorMatch
+Status against revision:   1065
+------------------------------------------------------------------------
+r944 | ross | 2016-04-13 21:04:09 -0600 (Wed, 13 Apr 2016) | 1 line
+
+Commented out DMX stuff.  Added 3-second delay at white.
+------------------------------------------------------------------------
+r878 | ross | 2015-12-25 12:52:27 -0700 (Fri, 25 Dec 2015) | 1 line
+
+Added BRG WS2811 for 10p/m strips.
+------------------------------------------------------------------------
+r876 | ross | 2015-12-21 21:32:07 -0700 (Mon, 21 Dec 2015) | 1 line
+
+Inverted sense of test mode pin.  Added MAX_INTENSITY.
+------------------------------------------------------------------------
+r805 | ross | 2015-06-17 21:25:48 -0600 (Wed, 17 Jun 2015) | 1 line
+
+Test pattern now does fades.
+------------------------------------------------------------------------
+r798 | ross | 2015-06-14 15:17:19 -0600 (Sun, 14 Jun 2015) | 1 line
+
+Added test pattern mode.
+------------------------------------------------------------------------
+r786 | ross | 2015-04-09 01:23:52 -0600 (Thu, 09 Apr 2015) | 1 line
+
+Updated DMX support.  Not tested.
+------------------------------------------------------------------------
+r785 | ross | 2015-04-06 22:27:25 -0600 (Mon, 06 Apr 2015) | 1 line
+
+Now does HSV or RGB.  Mode set by pin 4.
+------------------------------------------------------------------------
+r770 | ross | 2015-01-22 21:07:48 -0700 (Thu, 22 Jan 2015) | 3 lines
+
+Importing RGBStripColorMatch
+
+
+------------------------------------------------------------------------
+
+
+===================== RayCohen ====================
+              1065      912 ross         ../Arduino/RayCohen/sequenceDefinition.h
+              1065      912 ross         ../Arduino/RayCohen/RayCohen.ino
+              1065      912 ross         ../Arduino/RayCohen/colorDefs.txt
+              1065      912 ross         ../Arduino/RayCohen/patternDefinitions.h
+              1065      912 ross         ../Arduino/RayCohen/implementationConfig.h
+              1065      912 ross         ../Arduino/RayCohen
+Status against revision:   1065
+------------------------------------------------------------------------
+r912 | ross | 2016-02-28 11:00:17 -0700 (Sun, 28 Feb 2016) | 2 lines
+
+Adding RayCohen.
+
+------------------------------------------------------------------------
+
+
+===================== RedBarPanels ====================
+               962      689 ross         ../Arduino/RedBarPanels/RedBarPanels.ino
+               962      689 ross         ../Arduino/RedBarPanels
+Status against revision:   1065
+------------------------------------------------------------------------
+r689 | ross | 2014-08-19 00:37:18 -0600 (Tue, 19 Aug 2014) | 1 line
+
+RedBarPanels.ino:  Basic red slow lead-in to entrance followed by very fast chase.
+------------------------------------------------------------------------
+r688 | ross | 2014-08-19 00:21:10 -0600 (Tue, 19 Aug 2014) | 2 lines
+
+Importing RedBarPanels.
+
+------------------------------------------------------------------------
+
+
+===================== RotaryEncoderTest ====================
+               962      824 ross         ../Arduino/RotaryEncoderTest/RotaryEncoderTest.ino
+               962      824 ross         ../Arduino/RotaryEncoderTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r824 | ross | 2015-08-07 21:37:12 -0600 (Fri, 07 Aug 2015) | 2 lines
+
+Cleaned up.  Added support for pin change interrupts.
+
+------------------------------------------------------------------------
+r823 | ross | 2015-08-03 23:05:38 -0600 (Mon, 03 Aug 2015) | 2 lines
+
+Adding RotaryEncoderTest.
+
+------------------------------------------------------------------------
+
+
+===================== RozannsPatioLights ====================
+               962      877 ross         ../Arduino/RozannsPatioLights/sequenceDefinition.h
+               962      861 ross         ../Arduino/RozannsPatioLights/colorDefs.txt
+               962      877 ross         ../Arduino/RozannsPatioLights/patternDefinitions.h
+               962      879 ross         ../Arduino/RozannsPatioLights/implementationConfig.h
+               962      879 ross         ../Arduino/RozannsPatioLights/RozannsPatioLights.ino
+               962      879 ross         ../Arduino/RozannsPatioLights/patternFrameworkTypes.h
+               962      879 ross         ../Arduino/RozannsPatioLights
+Status against revision:   1065
+------------------------------------------------------------------------
+r879 | ross | 2015-12-26 19:41:10 -0700 (Sat, 26 Dec 2015) | 1 line
+
+The patParams arg of the pattern functions should always have been void*, not patternDef_t.
+------------------------------------------------------------------------
+r877 | ross | 2015-12-21 23:32:11 -0700 (Mon, 21 Dec 2015) | 1 line
+
+Added development strip config.  Minor bug fixes.  Better patterns for soffit lights.
+------------------------------------------------------------------------
+r875 | ross | 2015-12-21 20:02:16 -0700 (Mon, 21 Dec 2015) | 1 line
+
+GL's holiday lights now have 123 pixels.
+------------------------------------------------------------------------
+r874 | ross | 2015-12-15 22:52:40 -0700 (Tue, 15 Dec 2015) | 1 line
+
+Changed DMX (patio) ambient pattern to red/green wave.  Fixed classic xmas light orange (now HUE_BSU_ORANGE) and yellow (now HUE_ORANGE).  Turn fg intensity of GL's holiday lights up to 255.  Built with FastLED 3.1.0.
+------------------------------------------------------------------------
+r873 | ross | 2015-12-12 20:08:09 -0700 (Sat, 12 Dec 2015) | 1 line
+
+Using this project for Santa hat and Gay Lynn's holiday lights.
+------------------------------------------------------------------------
+r871 | ross | 2015-11-30 10:13:04 -0700 (Mon, 30 Nov 2015) | 1 line
+
+Selected the correct strip type.
+------------------------------------------------------------------------
+r869 | ross | 2015-11-29 12:14:44 -0700 (Sun, 29 Nov 2015) | 1 line
+
+Added EEPROM support, version is 0x01.  Current pattern selection now preserved across power cycles.  Disabled free memory display.
+------------------------------------------------------------------------
+r868 | ross | 2015-11-29 11:14:49 -0700 (Sun, 29 Nov 2015) | 1 line
+
+When going from auto to manual mode, first selected pattern is now the next pattern in the auto sequence (instead of the very first pattern).
+------------------------------------------------------------------------
+r867 | ross | 2015-11-29 11:05:58 -0700 (Sun, 29 Nov 2015) | 1 line
+
+Fixed split rotation.  Completed support for more than 255 pixels.  Added more solid colors.
+------------------------------------------------------------------------
+r866 | ross | 2015-11-28 23:43:11 -0700 (Sat, 28 Nov 2015) | 1 line
+
+Configured for BRG pixel strips (10 pixels/m from HolidayCoro 11/2015), set BG intensity scale factor to 192, set num pixels to 250, commented out split-rotation patterns because they cause the program to hang.
+------------------------------------------------------------------------
+r865 | ross | 2015-11-27 22:25:40 -0700 (Fri, 27 Nov 2015) | 1 line
+
+More patterns by Joshua.
+------------------------------------------------------------------------
+r864 | ross | 2015-11-26 22:35:01 -0700 (Thu, 26 Nov 2015) | 1 line
+
+Tested end-of-auto-patterns marker.  Minor changes.
+------------------------------------------------------------------------
+r863 | ross | 2015-11-26 22:12:14 -0700 (Thu, 26 Nov 2015) | 1 line
+
+Split out definitions of stuff into separate header files.  Added end-of-auto-patterns marker support.
+------------------------------------------------------------------------
+r862 | ross | 2015-11-26 18:38:33 -0700 (Thu, 26 Nov 2015) | 2 lines
+
+Merged stuff from DrewsDiamond--adds pushbutton support, shine and solid patterns.
+
+------------------------------------------------------------------------
+r861 | ross | 2015-11-26 17:26:59 -0700 (Thu, 26 Nov 2015) | 2 lines
+
+Moving branches/colorDefs.txt to trunk in RozannsPatioLights because that is where it belongs.
+
+------------------------------------------------------------------------
+r860 | ross | 2015-11-26 17:24:01 -0700 (Thu, 26 Nov 2015) | 2 lines
+
+Adding RozannsPatioLights.
+
+------------------------------------------------------------------------
+
+
+===================== SevenSegLEDTest ====================
+               962      804 ross         ../Arduino/SevenSegLEDTest/SevenSegLEDTest.ino
+               962      804 ross         ../Arduino/SevenSegLEDTest
+Status against revision:   1065
+------------------------------------------------------------------------
+r804 | ross | 2015-06-17 00:23:18 -0600 (Wed, 17 Jun 2015) | 1 line
+
+Added segment-to-shift-register mapping and numeric character generation.
+------------------------------------------------------------------------
+r803 | ross | 2015-06-16 23:01:18 -0600 (Tue, 16 Jun 2015) | 1 line
+
+Add segment mapping.  Not compiled yet.
+------------------------------------------------------------------------
+r802 | ross | 2015-06-16 21:27:11 -0600 (Tue, 16 Jun 2015) | 2 lines
+
+Initial add of SevenSegLEDTest.
+
+------------------------------------------------------------------------
+
+
+===================== SpinRedBar ====================
+               962      839 ross         ../Arduino/SpinRedBar/RedBarPanels2015/RedBarPanels2015.ino
+               962      836 ross         ../Arduino/SpinRedBar/RedBarPanels2015/dataStructures.h
+               962      839 ross         ../Arduino/SpinRedBar/RedBarPanels2015
+               962      961 ross         ../Arduino/SpinRedBar/Encoders/Encoders.ino
+               962      837 ross         ../Arduino/SpinRedBar/Encoders/pinAssignments
+               962      961 ross         ../Arduino/SpinRedBar/Encoders
+               962      961 ross         ../Arduino/SpinRedBar
+Status against revision:   1065
+------------------------------------------------------------------------
+r961 | ross | 2016-08-22 21:49:13 -0600 (Mon, 22 Aug 2016) | 1 line
+
+Changed encoder pins from A0-A6 to 2-7.
+------------------------------------------------------------------------
+r916 | ross | 2016-03-20 11:25:03 -0600 (Sun, 20 Mar 2016) | 1 line
+
+Fixed for Illumicone Fundraiser.  Transmits data via UART at 50 ms intervals.
+------------------------------------------------------------------------
+r915 | ross | 2016-03-17 21:37:55 -0600 (Thu, 17 Mar 2016) | 1 line
+
+Cleaned out cruft and commented-out code.
+------------------------------------------------------------------------
+r914 | ross | 2016-03-17 21:30:31 -0600 (Thu, 17 Mar 2016) | 1 line
+
+Fixed. Now reads 3 encoders and transmits data via UART.
+------------------------------------------------------------------------
+r839 | ross | 2015-09-02 20:40:28 -0600 (Wed, 02 Sep 2015) | 1 line
+
+Detects encoder activity but appears to get hung up waiting for serial data.
+------------------------------------------------------------------------
+r838 | ross | 2015-09-02 20:39:58 -0600 (Wed, 02 Sep 2015) | 1 line
+
+Transmits RPM data using stupid 999 protocol.
+------------------------------------------------------------------------
+r837 | ross | 2015-09-02 18:46:49 -0600 (Wed, 02 Sep 2015) | 1 line
+
+Implemented encoder activity detection.
+------------------------------------------------------------------------
+r836 | ross | 2015-09-02 17:52:32 -0600 (Wed, 02 Sep 2015) | 1 line
+
+Added David Van Arnem's code (RedBarPanels2015).
+------------------------------------------------------------------------
+r832 | ross | 2015-08-24 22:40:32 -0600 (Mon, 24 Aug 2015) | 1 line
+
+Minor mods for encoder testing.
+------------------------------------------------------------------------
+r831 | ross | 2015-08-12 23:31:44 -0600 (Wed, 12 Aug 2015) | 1 line
+
+Added green and orange LEDs.
+------------------------------------------------------------------------
+r829 | ross | 2015-08-09 21:20:32 -0600 (Sun, 09 Aug 2015) | 1 line
+
+Added RPM calculation.  Tested at 10 samples per second.
+------------------------------------------------------------------------
+r828 | ross | 2015-08-09 21:10:19 -0600 (Sun, 09 Aug 2015) | 1 line
+
+Added velocity calculation.
+------------------------------------------------------------------------
+r827 | ross | 2015-08-09 20:39:28 -0600 (Sun, 09 Aug 2015) | 1 line
+
+Now supports 3 encoders.  Tested first encoder only.
+------------------------------------------------------------------------
+r826 | ross | 2015-08-09 20:38:45 -0600 (Sun, 09 Aug 2015) | 1 line
+
+Added encoders VDD to pin assignments.
+------------------------------------------------------------------------
+r825 | ross | 2015-08-09 18:26:11 -0600 (Sun, 09 Aug 2015) | 2 lines
+
+Initial import of SpinRedBar.  Encoders.ino copied from RotaryEncoderTest.ino.
+
+------------------------------------------------------------------------
+
+
+===================== TestCheapass128x32OLED ====================
+              1059     1059 ross         ../Arduino/TestCheapass128x32OLED/TestCheapass128x32OLED.ino
+              1059     1059 ross         ../Arduino/TestCheapass128x32OLED
+Status against revision:   1065
+------------------------------------------------------------------------
+r1059 | ross | 2021-11-01 19:22:26 -0600 (Mon, 01 Nov 2021) | 1 line
+
+Importing test program for the cheap, little OLED displays.
+------------------------------------------------------------------------
+
+
+===================== TestSwitchAndPotBox ====================
+              1047     1047 ross         ../Arduino/TestSwitchAndPotBox/TestSwitchAndPotBox.ino
+              1047     1047 ross         ../Arduino/TestSwitchAndPotBox
+Status against revision:   1065
+------------------------------------------------------------------------
+r1047 | ross | 2019-03-22 19:20:11 -0600 (Fri, 22 Mar 2019) | 2 lines
+
+Adding TestSwitchAndPotBox for the box with 8 switches, three pots, and a button that was constructed to send bender messages to the Electric Garden at ILLUMiBRATE 2019.
+
+------------------------------------------------------------------------
+
+
+===================== TftCalibrate ====================
+              1020     1020 ross         ../Arduino/TftCalibrate/TftCalibrate.ino
+              1018     1018 ross         ../Arduino/TftCalibrate
+Status against revision:   1065
+------------------------------------------------------------------------
+r1018 | ross | 2018-03-23 17:55:26 -0600 (Fri, 23 Mar 2018) | 2 lines
+
+Adding TftCalibrate.  Does basic calibration and shows results.
+
+------------------------------------------------------------------------
+
+
+===================== TftClock ====================
+              1011     1011 ross         ../Arduino/TftClock/TftClock.ino
+              1011     1011 ross         ../Arduino/TftClock
+Status against revision:   1065
+------------------------------------------------------------------------
+r1011 | ross | 2018-03-20 15:13:15 -0600 (Tue, 20 Mar 2018) | 2 lines
+
+Adding TftClock test sketch.
+
+------------------------------------------------------------------------
+
+
+===================== Tiltarama ====================
+              1039     1039 ross         ../Arduino/Tiltarama/Tiltarama.ino
+              1022     1022 ross         ../Arduino/Tiltarama
+Status against revision:   1065
+------------------------------------------------------------------------
+r1022 | ross | 2018-07-24 22:44:01 -0600 (Tue, 24 Jul 2018) | 2 lines
+
+Added DMX.
+
+------------------------------------------------------------------------
+r1017 | ross | 2018-03-22 11:29:07 -0600 (Thu, 22 Mar 2018) | 1 line
+
+Added display of temperature on LCD.
+------------------------------------------------------------------------
+r1016 | ross | 2018-03-22 00:02:43 -0600 (Thu, 22 Mar 2018) | 1 line
+
+Added character LCD support.
+------------------------------------------------------------------------
+r1015 | ross | 2018-03-21 20:37:11 -0600 (Wed, 21 Mar 2018) | 1 line
+
+Fixed gyro plot variables not getting set.
+------------------------------------------------------------------------
+r1014 | ross | 2018-03-21 17:52:34 -0600 (Wed, 21 Mar 2018) | 1 line
+
+Added real acceleration.
+------------------------------------------------------------------------
+r1013 | ross | 2018-03-21 16:37:33 -0600 (Wed, 21 Mar 2018) | 1 line
+
+Rewritten using code from Widget_Rainstick.  Sends yaw/pitch/roll and gyro data to arduino-plotter.
+------------------------------------------------------------------------
+r1012 | ross | 2018-03-21 14:00:17 -0600 (Wed, 21 Mar 2018) | 2 lines
+
+Adding the old Tiltarama sketch.
+
+------------------------------------------------------------------------
+
+
+===================== TrailerAwningPixelStrips ====================
+              1065      841 ross         ../Arduino/TrailerAwningPixelStrips/TrailerAwningPixelStrips.ino
+              1065      841 ross         ../Arduino/TrailerAwningPixelStrips
+Status against revision:   1065
+------------------------------------------------------------------------
+r841 | ross | 2015-10-19 22:33:50 -0600 (Mon, 19 Oct 2015) | 3 lines
+
+Adding TrailerAwningPixelStrips which, at this point, is a very messy
+clone of HomePatioRGBStrips.
+
+------------------------------------------------------------------------

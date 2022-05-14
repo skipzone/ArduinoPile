@@ -1,0 +1,7 @@
+#! /bin/bash
+while read f
+do
+    printf "\n\n===================== $f ====================\n" >> svnLogs.txt
+    svn status -uv ../Arduino/$f >> svnLogs.txt 2>&1
+    svn log ../Arduino/$f >> svnLogs.txt 2>&1
+done < svnProjects
