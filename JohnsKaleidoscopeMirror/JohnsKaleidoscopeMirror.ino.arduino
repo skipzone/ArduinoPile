@@ -1,0 +1,938 @@
+/*****************************************************************
+ *                                                               *
+ * Addressable LED Pixel Driver for Mizfit's Kaleidoscope Mirror *
+ *                                                               *
+ * Platform:  Arduino Uno, Pro, Pro Mini                         *
+ *                                                               *
+ * Architecture and pattern functions by Ross Butler, Oct. 2014  *
+ *                                                               *
+ *****************************************************************/
+
+#include "FastLED.h"
+
+
+
+/***************************
+ * Configuration Constants *
+ ***************************/
+
+// the total number of pixels in the strip
+#define NUM_LEDS 99
+
+// the number of pixels attached to each of the three mirror panels
+#define NUM_PANELS 3
+#define PANEL_NUM_LEDS (NUM_LEDS / NUM_PANELS)
+
+// the Arduino pin connected to the LED strip's data line
+// (2 for Ross's development system, 3 for John's mirror)
+#define DATA_PIN 2
+
+// colors for WS2812B 5V pixel strips purchased in 2013
+#define BSU_BLUE           (CRGB::HTMLColorCode) 0x0000FF
+#define BSU_ORANGE         (CRGB::HTMLColorCode) 0xC03000  
+#define HUE_BSU_BLUE       (HSVHue) 160
+#define HUE_BSU_ORANGE     (HSVHue) 28
+#define VIKINGS_PURPLE     (CRGB::HTMLColorCode) 0x6000FF
+#define VIKINGS_YELLOW     (CRGB::HTMLColorCode) 0x707000
+#define HUE_VIKINGS_PURPLE (HSVHue) 192
+#define HUE_VIKINGS_YELLOW (HSVHue) 64
+
+// INTENSITY_SCALE_FACTOR sets the maximum brightness for backgrounds.  It also
+// sets the brightness of the foreground of patterns that aren't doing some sort
+// of flashing or sparkle effect.  Although the range is 0 to 255, practical
+// values are more like 16 to 128.  48 is pretty darn bright in a darkened room.
+#define INTENSITY_SCALE_FACTOR 48
+
+// MAX_WAVEFORMS is the maximum number of waveforms
+// that can be configured for a multiWave pattern.
+#define MAX_WAVEFORMS 3
+
+// MAX_SPARKLE_DENSITY is the maximum number of foreground pixels
+// that can be illuminated simultaneously in a sparkle pattern.
+#define MAX_SPARKLE_DENSITY 5
+
+// Approximate millisecond delay between sparkle changes.
+#define SPARKLE_DELAY 15
+
+
+
+/************************************
+ * Pattern Configuration Structures *
+ ************************************/
+
+// These are the waveforms that can be used in a multiWave pattern.  A good
+// explanation of the shape and computation cost of the quadratic and cubic
+// easing waveforms can be found here:
+//
+//     https://github.com/FastLED/FastLED/wiki/FastLED-Wave-Functions
+//
+// From that web page:
+//
+//     quadwave8(i) -- quadratic in/out easing applied to a triangle wave. This
+//     makes nearly a sine wave, but takes only about 2/3rds of the CPU cycles
+//     of FastLED's fastest sine function.
+//
+//     cubicwave8(i) -- cubic in/out easing applied to a triangle wave. This
+//     makes a 'higher contrast' wave than the quad or sine wave. 10-20% faster
+//     than FastLED's fastest sine function.
+//
+typedef enum {
+  squareWave,
+  triangleWave,
+  quadraticEasing,
+  cubicEasing,
+  sineWave
+} waveformType_t;
+  
+// This structure holds a single waveform configuration
+// that is part of a multiWave pattern.
+typedef struct colorWaveParams colorWaveParams_t;
+struct colorWaveParams {
+  bool           randomHue;       // true if the waveform hue should be selected at random
+  HSVHue         posHue;          // hue of the positive half of the waveform (if randomHue is false)
+  HSVHue         negHue;          // hue of the negative half of the waveform (if randomHue is false)
+  int8_t         numWaves;        // no. of complete waveforms in pattern; neg. for halfwave (neg. half black), 0 to disable wave 
+  waveformType_t waveformType;    // a value from the waveformType_t enum
+  bool           directionDown;   // true if the waves should move toward pixel 0, false if they should move the other direction
+  uint8_t        delay;           // roughly, the number of milliseconds between each stepped movement of a wave
+};
+
+// This structure holds the configuration of a multiWave pattern.
+// It contains MAX_WAVEFORMS single waveform configurations.
+typedef struct multiWaveParams multiWaveParams_t;
+struct multiWaveParams {
+  bool              boundedByPanel;  // true if all the waveforms should appear across each panel, false if across the entire strip
+  colorWaveParams_t waveParams[MAX_WAVEFORMS];
+};
+
+
+// This structure holds the configuration of a sparkle pattern.  Set both
+// fgColorCode and bgColorCode to black for random color selection.
+typedef struct sparkleParams sparkleParams_t;
+struct sparkleParams {
+  CRGB::HTMLColorCode fgColorCode;  // color code of the sparkle color
+  CRGB::HTMLColorCode bgColorCode;  // color code of the background color
+  uint8_t             density;      // number of foreground (sparkle) pixels on simultaneously (1 to MAX_SPARKLE_DENSITY)
+};
+
+
+// This structure hold the configuration of a moving-dot pattern.  Set both
+// fgColorCode and bgColorCode to black for random color selection.
+typedef struct movingDotParams movingDotParams_t;
+struct movingDotParams {
+  CRGB::HTMLColorCode fgColorCode;    // dot color
+  CRGB::HTMLColorCode bgColorCode;    // background color
+  bool                bidirectional;  // true if the dot should bounce back and forth
+  uint8_t             delay0;         // approx. ms delay between dot steps when moving away from pixel 0
+  uint8_t             delay1;         // approx. ms delay between dot steps when moving toward pixel 0
+};
+
+
+// This structure holds the configuration of a split-rotation pattern.
+typedef struct splitRotationParams splitRotationParams_t;
+struct splitRotationParams {
+  bool    randomHue;      // true if the hues should be selected at random
+  HSVHue  fgHue;          // foreground (moving pixels) hue
+  HSVHue  bgHue;          // background hue
+  uint8_t fgInterval;     // number of background pixels minus one between each moving pixel
+  bool    directionDown;  // true to rotate one way, false to rotate the other way
+  uint8_t delay;          // approx. ms delay between rotation steps
+};
+
+
+// This structure holds the configuration of a rainbow pattern.
+typedef struct rainbowParams rainbowParams_t;
+struct rainbowParams {
+  bool    directionDown;  // true to rotate one way, false to rotate the other way
+  uint8_t delay;          // approx. ms delay between rotation steps
+};
+
+
+// This structure contains the definition of an actual pattern to be displayed.
+// It associates a pattern function with the values that control the pattern's
+// appearance and the length of time the pattern should be displayed.
+typedef struct pattern pattern_t;
+struct pattern {
+  void          (*loopFun)(pattern_t*, bool);
+  unsigned long durationSec;
+  void*         patParams;
+};
+
+
+
+/********************************************
+ * Pattern and Helper Function Declarations *
+ ********************************************/
+
+// pattern functions
+void rainbow(pattern_t* pat, bool doInit);
+void multiWave(pattern_t* pat, bool doInit);
+void movingDot(pattern_t* pat, bool doInit);
+void sparkle(pattern_t* pat, bool doInit);
+void splitRotation(pattern_t* pat, bool doInit);
+
+// helper functions
+void selectRandomRgb(CRGB* rgbColor, CRGB* rgbColorInverse);
+void selectRandomHue(HSVHue* hue, HSVHue* hueInverse);
+void rotateCrgbRight(CRGB* a, uint8_t length);
+void rotateCrgbLeft(CRGB* a, uint8_t length);
+void replicatePanels();
+
+
+
+/***********
+ * Globals *
+ ***********/
+
+CRGB leds[NUM_LEDS];
+
+
+
+/***********************
+ * Pattern Definitions *
+ ***********************/
+
+// ---------- multi-wave patterns ----------
+
+// Each multiwave element consists of one boundedByPanel element and MAX_WAVEFORMS
+// wave definition elements.  When less than MAX_WAVEFORMS are needed, set numWaves
+// to zero in unused wave definitions.
+
+// Wave definition elements:
+//     randomHue       true if the waveform hue should be selected at random
+//     posHue          hue of the positive half of the waveform (if randomHue is false)
+//     negHue          hue of the negative half of the waveform (if randomHue is false)
+//     numWaves        no. of complete waveforms in pattern; neg. for halfwave (neg. half black), 0 to disable wave 
+//     waveformType    a value defined in the waveformType_t enum
+//     directionDown   true if the waves should move toward pixel 0, false if they should move the other direction
+//     delay           roughly, the number of milliseconds between each stepped movement of a wave (0-255)
+
+multiWaveParams_t multiWaveBsu = {
+  true,
+  { {false, HUE_BSU_BLUE , HUE_BSU_ORANGE,  1, cubicEasing    , false,  90},
+    {false, HUE_RED      , HUE_RED       ,  0, sineWave       , false,   0},
+    {false, HUE_RED      , HUE_RED       ,  0, sineWave       , false,   0} } };
+
+multiWaveParams_t multiWave1Random = {
+  true,
+  { {true , HUE_RED      , HUE_RED       ,  3, quadraticEasing, false,  60},
+    {false, HUE_RED      , HUE_RED       ,  0, quadraticEasing, false,   0},
+    {false, HUE_RED      , HUE_RED       ,  0, quadraticEasing, false,   0} } };
+
+multiWaveParams_t multiWave2Random = { 
+  false,
+  { {true , HUE_RED      , HUE_RED       ,  1, quadraticEasing, false, 255},
+    {false, HUE_RED      , HUE_RED       ,  5, quadraticEasing, false, 127},
+    {false, HUE_RED      , HUE_RED       ,  0, quadraticEasing, false,   0} } };
+
+multiWaveParams_t multiWave3 = { 
+  false,
+  { {false, HUE_BLUE     , HUE_ORANGE    , -1, sineWave       , false,  60},
+    {false, HUE_RED      , HUE_AQUA      , -2, sineWave       , true ,  80},
+    {false, HUE_GREEN    , HUE_PINK      , -3, sineWave       , false, 100} } };
+
+multiWaveParams_t multiWave3SquareA = { 
+  true,
+  { {false, HUE_BLUE     , HUE_ORANGE    ,  1, squareWave     , true , 255},
+    {false, HUE_RED      , HUE_AQUA      ,  2, squareWave     , true , 192},
+    {false, HUE_GREEN    , HUE_PINK      ,  3, squareWave     , false, 128} } };
+
+multiWaveParams_t multiWave3SquareB = { 
+  true,
+  { {false, HUE_BLUE     , HUE_ORANGE    , -1, squareWave     , true ,  80},
+    {false, HUE_RED      , HUE_AQUA      , -3, squareWave     , true ,  80},
+    {false, HUE_GREEN    , HUE_PINK      , -5, squareWave     , false,  80} } };
+
+multiWaveParams_t multiWave3ClusterFuck = {
+  false,
+  { {false, HUE_BLUE     , HUE_BLUE      ,  1, quadraticEasing, true ,  60},
+    {false, HUE_RED      , HUE_RED       ,  3, triangleWave   , true ,  40},
+    {false, HUE_GREEN    , HUE_GREEN     ,  5, quadraticEasing, true ,  20} } };
+
+
+// ---------- sparkle patterns ----------
+
+// Elements:
+//     fgColorCode  color code of the sparkle color
+//     bgColorCode  color code of the background color
+//     density      number of foreground (sparkle) pixels on simultaneously (1 to MAX_SPARKLE_DENSITY)
+
+sparkleParams_t sparkleVikings1   = {VIKINGS_PURPLE,  VIKINGS_YELLOW, 1};
+sparkleParams_t sparkleVikings2   = {VIKINGS_YELLOW,  VIKINGS_PURPLE, 1};
+sparkleParams_t sparkleBluePretty = {CRGB::White   ,  CRGB::Blue    , 1};
+sparkleParams_t sparkleBlueCrazy  = {CRGB::White   ,  CRGB::Blue    , 5};
+sparkleParams_t sparkleRedCrazy1  = {CRGB::Red     ,  CRGB::Cyan    , 3};
+sparkleParams_t sparkleRedCrazy2  = {CRGB::Red     ,  CRGB::Blue    , 3};
+sparkleParams_t sparkleRedCrazy3  = {CRGB::Red     ,  CRGB::Black   , 5};
+sparkleParams_t sparkleRandom     = {CRGB::Black   ,  CRGB::Black   , 2};
+
+
+// ---------- moving-dot patterns ----------
+
+// Elements:
+//     fgColorCode    dot color
+//     bgColorCode    background color
+//     bidirectional  true if the dot should bounce back and forth
+//     delay0         approx. ms delay between dot steps when moving away from pixel 0 (0-255)
+//     delay1         approx. ms delay between dot steps when moving toward pixel 0 (0-255)
+
+movingDotParams_t movingDotRedRecoil   = {CRGB::Red, CRGB::Black, true , 30, 10};
+movingDotParams_t movingDotRedFast     = {CRGB::Red, CRGB::Black, false,  5,  0};
+movingDotParams_t movingDotRedEpilepsy = {CRGB::Red, CRGB::Black, false,  1,  0};
+
+
+// ---------- split-rotation patterns ----------
+
+// Elements:
+//     randomHue      true if the hues should be selected at random
+//     fgHue          foreground (moving pixels) hue
+//     bgHue          background hue
+//     fgInterval     number of background pixels minus one between each moving pixel
+//     directionDown  true to rotate one way, false to rotate the other way
+//     delay          approx. ms delay between rotation steps (0-255)
+
+splitRotationParams_t splitRotationVikings8Medium = {false, HUE_VIKINGS_YELLOW, HUE_VIKINGS_PURPLE, 8, false,  60};
+splitRotationParams_t splitRotationRed8RFast      = {false, HUE_RED           , HUE_AQUA          , 8, false,  30};
+splitRotationParams_t splitRotationRandom4RSlow   = {true , HUE_RED           , HUE_RED           , 4, false, 120};
+splitRotationParams_t splitRotationRandom4LSlow   = {true , HUE_RED           , HUE_RED           , 4, true , 120};
+splitRotationParams_t splitRotationRandom8RSlow   = {true , HUE_RED           , HUE_RED           , 8, false, 120};
+splitRotationParams_t splitRotationRandom8LSlow   = {true , HUE_RED           , HUE_RED           , 8, true , 120};
+splitRotationParams_t splitRotationRandom8RMedium = {true , HUE_RED           , HUE_RED           , 8, false,  60};
+splitRotationParams_t splitRotationRandom8LMedium = {true , HUE_RED           , HUE_RED           , 8, true ,  60};
+// splitRotationParams_t splitRotationRandom8RFast  = {true , HUE_RED           , HUE_RED           , 8, false,  30};
+// splitRotationParams_t splitRotationRandom8LFast  = {true , HUE_RED           , HUE_RED           , 8, true ,  30};
+// splitRotationParams_t splitRotationRandom8RDizzy = {true , HUE_RED           , HUE_RED           , 8, false,  15};
+// splitRotationParams_t splitRotationRandom8LDizzy = {true , HUE_RED           , HUE_RED           , 8, true ,  15};
+
+
+// ---------- rainbow patterns ----------
+
+// Elements:
+//     directionDown  true to rotate one way, false to rotate the other way
+//     delay          approx. ms delay between rotation steps (0-255)
+
+rainbowParams_t rainbowSlowSoothing = {false, 10};
+rainbowParams_t rainbowManicRight   = {false,  0};
+rainbowParams_t rainbowManicLeft    = {true ,  0};
+
+
+
+/***********************
+ *   T H E   S H O W   *
+ ***********************/
+
+// Elements in each pattern element:
+//     pattern function
+//     duration (number of seconds)
+//     pattern configuration (prefix with ampersand)
+
+pattern_t patterns[] = {
+  // introductory twisting kaleidoscope
+  {multiWave    ,  20,  &multiWave3SquareA},
+
+  // Vikings tribute (with shitty purple, unfortunately)
+  {sparkle      ,   2,  &sparkleVikings1},
+  {sparkle      ,   2,  &sparkleVikings2},
+  {sparkle      ,   2,  &sparkleVikings1},
+  {sparkle      ,   2,  &sparkleVikings2},
+  {splitRotation,   5,  &splitRotationVikings8Medium},
+
+  // BSU tribute
+  {multiWave    ,  10,  &multiWaveBsu},
+
+  // pretty white-on-blue sparkle
+  {sparkle      ,  15,  &sparkleBluePretty},
+
+  // a random-color single waveform
+  {multiWave    ,  10,  &multiWave1Random},
+
+  // John's favorite
+  {movingDot    ,  15,  &movingDotRedRecoil},
+
+  // colors splashing into each other
+  {multiWave    ,  20,  &multiWave3 },
+
+  // brain ramp-up
+  {splitRotation,   5,  &splitRotationRandom8RSlow},
+  {splitRotation,   5,  &splitRotationRandom8LSlow},
+  {splitRotation,   5,  &splitRotationRandom8RSlow},
+  {splitRotation,   5,  &splitRotationRandom8LSlow},
+
+  // a hint of trippy things to come
+  {movingDot    ,  10,  &movingDotRedFast},
+
+  // firework-intensity white-on-blue sparkle
+  {sparkle      ,   7,  &sparkleBlueCrazy},
+
+  // back it off a little, let 'em catch up with some alternating-direction rotations
+  {splitRotation,   5,  &splitRotationRandom4RSlow},
+  {splitRotation,   5,  &splitRotationRandom4LSlow},
+  {splitRotation,   5,  &splitRotationRandom4RSlow},
+  {splitRotation,   5,  &splitRotationRandom4LSlow},
+
+  // an attempt at a blocky kaleidoscope pattern
+  {multiWave    ,  15,  &multiWave3SquareB},
+
+  // rotating patterns look really cool in the infinite reflections... and straight up, too, if your brain is right
+  {splitRotation,   5,  &splitRotationRandom8RMedium},
+  {splitRotation,   5,  &splitRotationRandom8LMedium},
+  {splitRotation,   5,  &splitRotationRandom8RMedium},
+  {splitRotation,   5,  &splitRotationRandom8LMedium},
+
+  // unicorn diarrhea
+  {rainbow      ,   8,  &rainbowManicRight},
+  {rainbow      ,   7,  &rainbowManicLeft},
+  {rainbow      ,   6,  &rainbowManicRight},
+  {rainbow      ,   5,  &rainbowManicLeft},
+  {rainbow      ,   4,  &rainbowManicRight},
+  {rainbow      ,   3,  &rainbowManicLeft},
+  {rainbow      ,   2,  &rainbowManicRight},
+  {rainbow      ,   2,  &rainbowManicLeft},
+  {rainbow      ,   1,  &rainbowManicRight},
+  {rainbow      ,   1,  &rainbowManicLeft},
+  {rainbow      ,   1,  &rainbowManicRight},
+  {rainbow      ,   1,  &rainbowManicLeft},
+
+  // some more sparkly shit
+  {sparkle      ,   4,  &sparkleRandom},
+  {sparkle      ,   3,  &sparkleRandom},
+  {sparkle      ,   3,  &sparkleRandom},
+  {sparkle      ,   2,  &sparkleRandom},
+  {sparkle      ,   1,  &sparkleRandom},
+  {sparkle      ,   1,  &sparkleRandom},
+  {sparkle      ,   1,  &sparkleRandom},
+  {sparkle      ,   1,  &sparkleRandom},
+  {sparkle      ,   1,  &sparkleRandom},
+
+  // chill it back a little
+  {multiWave    ,  30,  &multiWave2Random},
+
+  // forgot what the hell this was supposed to be
+//  {splitRotation,  20,  &splitRotationRandom8RFast},
+//  {splitRotation,  20,  &splitRotationRandom8LFast},
+//  {splitRotation,   5,  &splitRotationRandom8RDizzy},
+//  {splitRotation,   5,  &splitRotationRandom8LDizzy},
+
+  // ramp up with some color tripping
+  {multiWave    ,  20,  &multiWave3ClusterFuck},
+
+  // frenetic mindfuck
+  {splitRotation,   4,  &splitRotationRed8RFast},
+  {sparkle      ,   3,  &sparkleRedCrazy1},
+  {sparkle      ,   3,  &sparkleRedCrazy2},
+  {sparkle      ,   3,  &sparkleRedCrazy3},
+  {movingDot    ,   2,  &movingDotRedEpilepsy},
+  {sparkle      ,   3,  &sparkleRedCrazy1},
+  {sparkle      ,   4,  &sparkleRedCrazy2},
+  {sparkle      ,   5,  &sparkleRedCrazy3},
+  {movingDot    ,   5,  &movingDotRedEpilepsy},
+
+  // soothing coming-down rainbow
+  {rainbow      ,  15,  &rainbowSlowSoothing},
+
+};
+
+
+// Calculate the number of patterns that make up the entire show.
+#define NUM_PATTERNS (sizeof(patterns) / sizeof(pattern_t))
+
+
+
+/*****************************
+ * Pattern Drawing Functions *
+ *****************************/
+
+
+void rainbow(pattern_t* pat, bool doInit)
+{
+  static uint8_t stepNum;
+
+  uint8_t i;
+
+  if (doInit) {
+    stepNum = 0;
+    return;
+  }
+
+  fill_rainbow(leds, PANEL_NUM_LEDS, stepNum, 255 / PANEL_NUM_LEDS);
+  replicatePanels();
+
+  for (i = 0; i < NUM_LEDS; leds[i++].nscale8_video(INTENSITY_SCALE_FACTOR));
+
+  FastLED.show();
+
+  if (((rainbowParams_t*) pat->patParams)->directionDown) {
+    ++stepNum;
+  }
+  else {
+    --stepNum;
+  }
+  delay(((rainbowParams_t*) pat->patParams)->delay);
+
+}
+
+
+
+void multiWave(pattern_t* pat, bool doInit)
+{
+  static uint8_t numWaveforms;
+  static HSVHue posHue[MAX_WAVEFORMS];
+  static HSVHue negHue[MAX_WAVEFORMS];
+  static uint16_t angleInterval[MAX_WAVEFORMS];
+  static uint16_t i0[MAX_WAVEFORMS];
+  static uint8_t delayCount[MAX_WAVEFORMS];
+
+  uint8_t w;
+  colorWaveParams_t* waveParam;
+  uint8_t i;
+  uint8_t j;
+  uint16_t t;
+  uint8_t y;
+  CHSV hsvColor;
+  CHSV hsvBlended;
+  uint8_t amountOfOverlay;
+  uint8_t valueSum;
+  CRGB rgbColor;
+  uint8_t scaleFactor;
+  bool needToDisplay;
+
+
+  if (doInit) {
+
+    numWaveforms = 0;
+    
+    // Calculate and save the LED values for each wave at t = 0.    
+    for (w = 0; w < MAX_WAVEFORMS; ++w)
+    {
+      waveParam = ((multiWaveParams_t*) pat->patParams)->waveParams + w;
+
+      if (0 == waveParam->numWaves) {
+        break;
+      }
+      ++numWaveforms;
+
+      if (waveParam->randomHue) {
+        selectRandomHue(&posHue[w], &negHue[w]);
+      }
+      else {
+        posHue[w] = waveParam->posHue;
+        negHue[w] = waveParam->negHue;
+      }
+  
+      // We use 16 bits for the angle interval and "time" so that we have sufficient
+      // resultion to fit a complete set of the requested number of waves.
+      angleInterval[w] = 65535 / (((multiWaveParams_t*) pat->patParams)->boundedByPanel
+        ? PANEL_NUM_LEDS
+        : NUM_LEDS) * abs(waveParam->numWaves);
+
+      i0[w] = 0;
+      
+      delayCount[w] = waveParam->delay;
+    }
+    
+    return;
+  }
+
+
+  needToDisplay = false;
+  for (w = 0; w < numWaveforms; ++w) {
+    if (0 == --delayCount[w]) {
+      delayCount[w] = ((multiWaveParams_t*) pat->patParams)->waveParams[w].delay;
+      needToDisplay = true;
+      if (((multiWaveParams_t*) pat->patParams)->waveParams[w].directionDown) {
+        if (++i0[w] >= (((multiWaveParams_t*) pat->patParams)->boundedByPanel ? PANEL_NUM_LEDS : NUM_LEDS)) {
+          i0[w] = 0;
+        }
+      }
+      else {
+        if (0 == i0[w]--) {
+          i0[w] = ((multiWaveParams_t*) pat->patParams)->boundedByPanel ? PANEL_NUM_LEDS - 1 : NUM_LEDS - 1;
+        }
+      }
+    }
+  }
+  if (!needToDisplay) {
+    delay(1);
+    return;
+  }
+
+    
+  for (i = 0; i < (((multiWaveParams_t*) pat->patParams)->boundedByPanel ? PANEL_NUM_LEDS : NUM_LEDS); ++i) {
+
+    for (w = 0; w < numWaveforms; ++w) {
+
+      t = ((uint16_t) i + i0[w]) * angleInterval[w] / 256;
+      switch (((multiWaveParams_t*) pat->patParams)->waveParams[w].waveformType) {
+        case squareWave:
+          y = triwave8(t) >= 128 ? 255 : 0;
+          break;
+        case triangleWave:
+          y = triwave8(t);
+          break;
+        case quadraticEasing:
+          y = quadwave8(t);
+          break;
+        case cubicEasing:
+          y = cubicwave8(t);
+          break;
+        case sineWave:
+        default:
+          y = sin8(t);
+          break;
+      }
+      if (y >= 128) {
+        hsvColor.h = posHue[w];
+        hsvColor.v = (y - 128) * 2;
+      }
+      else {
+        hsvColor.h = negHue[w];
+        // A negative number of waves means make a half wave.
+        hsvColor.v = (((multiWaveParams_t*) pat->patParams)->waveParams[w].numWaves >= 0) ? (127 - y) * 2 : 0;
+      }
+      hsvColor.s = 255;
+      
+      if (0 == w) {
+        hsvBlended = hsvColor;
+      }
+      else {
+        amountOfOverlay = 255 * (uint16_t) hsvBlended.v / ((uint16_t) hsvColor.v + (uint16_t) hsvBlended.v);
+        valueSum = qadd8(hsvBlended.v, hsvColor.v);
+        nblend(hsvBlended, hsvColor, amountOfOverlay);
+        hsvBlended.v = valueSum;
+      }
+    }
+    
+    hsv2rgb_rainbow(hsvBlended, leds[i]);
+    leds[i].nscale8_video(INTENSITY_SCALE_FACTOR);
+  }
+
+  if (((multiWaveParams_t*) pat->patParams)->boundedByPanel) {
+    replicatePanels();
+  }
+  
+  FastLED.show();
+}
+
+
+
+void movingDot(pattern_t* pat, bool doInit)
+{
+  static uint8_t stepNum;
+  static uint8_t stepDir;
+  CRGB rgbColor;
+  uint8_t j;
+
+  if (doInit) {
+    stepNum = 0;
+    stepDir = 0;
+    return;
+  }
+
+  rgbColor = ((movingDotParams_t*) pat->patParams)->bgColorCode;
+  rgbColor.nscale8_video(INTENSITY_SCALE_FACTOR);
+  leds[stepNum] = rgbColor;
+  for (j = 1; j < NUM_PANELS; ++j) {
+    leds[stepNum + PANEL_NUM_LEDS * j] = rgbColor;
+  }
+  
+  if (!stepDir) {
+    if (++stepNum >= PANEL_NUM_LEDS) {
+      if (((movingDotParams_t*) pat->patParams)->bidirectional) {
+        stepNum -= 2;
+        stepDir = 1;
+      }
+      else {
+        stepNum = 0;
+      }
+    }
+  }
+  else {
+    if (--stepNum == 0) {
+      stepDir = 0;
+    }
+  }
+  
+  rgbColor = ((movingDotParams_t*) pat->patParams)->fgColorCode;
+  leds[stepNum] = rgbColor;
+  for (j = 1; j < NUM_PANELS; ++j) {
+    leds[stepNum + PANEL_NUM_LEDS * j] = rgbColor;
+  }
+  
+  FastLED.show();
+  delay(stepDir ? ((movingDotParams_t*) pat->patParams)->delay1 : ((movingDotParams_t*) pat->patParams)->delay0);
+}
+
+
+
+void sparkle(pattern_t* pat, bool doInit)
+{
+  static uint8_t density;
+  static uint8_t selectedLeds[MAX_SPARKLE_DENSITY];
+  static CRGB fgColor;
+  static CRGB bgColor;
+
+  uint8_t i;
+  
+  if (doInit) {
+    density = ((sparkleParams_t*) pat->patParams)->density <= MAX_SPARKLE_DENSITY 
+      ? ((sparkleParams_t*) pat->patParams)->density 
+      : MAX_SPARKLE_DENSITY;
+    for (i = 0; i < density; ++i) {
+      selectedLeds[i] = 0;
+    }
+
+    if (((sparkleParams_t*) pat->patParams)->fgColorCode != CRGB::Black
+        || ((sparkleParams_t*) pat->patParams)->bgColorCode != CRGB::Black) {
+      fgColor = ((sparkleParams_t*) pat->patParams)->fgColorCode;
+      bgColor = ((sparkleParams_t*) pat->patParams)->bgColorCode;
+    }
+    else {
+      selectRandomRgb(&fgColor, &bgColor);
+    }
+    bgColor.nscale8_video(INTENSITY_SCALE_FACTOR);
+    
+    // Fill with background color.
+    fill_solid(leds, NUM_LEDS, bgColor);
+    FastLED.show();
+    return;
+  }
+
+  for (i = 0; i < density; ++i) {
+    // Turn off the last sparkle pixel.
+    leds[selectedLeds[i]] = bgColor;
+  
+    // Turn on a random sparkle pixel.
+    selectedLeds[i] = random8(NUM_LEDS);
+    leds[selectedLeds[i]] = fgColor;
+  }
+
+  FastLED.show();
+  delay(SPARKLE_DELAY);
+}
+
+
+
+void splitRotation(pattern_t* pat, bool doInit)
+{
+  uint8_t i;
+  HSVHue fgHue;
+  HSVHue bgHue;
+  CHSV fgHsv;
+  CHSV bgHsv;
+  CRGB rgbColor;
+  
+
+  if (doInit) {
+
+    if (((splitRotationParams_t*) pat->patParams)->randomHue) {
+      selectRandomHue(&fgHue, &bgHue);
+    }
+    else {
+      fgHue = ((splitRotationParams_t*) pat->patParams)->fgHue;
+      bgHue = ((splitRotationParams_t*) pat->patParams)->bgHue;
+    }
+    fgHsv.h = fgHue;
+    fgHsv.s = 255;
+    fgHsv.v = 255;
+    bgHsv.h = bgHue;
+    bgHsv.s = 255;
+    bgHsv.v = 255;
+
+    // Fill with background color.
+    hsv2rgb_rainbow(bgHsv, rgbColor);
+    rgbColor.nscale8_video(INTENSITY_SCALE_FACTOR);
+    fill_solid(leds, PANEL_NUM_LEDS, rgbColor);
+
+    // Set every nth pixel to the foreground color.
+    hsv2rgb_rainbow(fgHsv, rgbColor);
+    rgbColor.nscale8_video(INTENSITY_SCALE_FACTOR);
+    for (i = 0; i < PANEL_NUM_LEDS; i += ((splitRotationParams_t*) pat->patParams)->fgInterval) {
+        leds[i] = rgbColor;
+    }
+
+    replicatePanels();
+
+    FastLED.show();
+
+    return;
+  }
+
+
+  i = PANEL_NUM_LEDS / 4;
+  if (((splitRotationParams_t*) pat->patParams)->directionDown) {
+    rotateCrgbLeft(leds, i);
+    rotateCrgbRight(leds + i, i);
+    rotateCrgbRight(leds + i * 3, i);
+    rotateCrgbLeft(leds + i * 2, i);
+  }
+  else {
+    rotateCrgbRight(leds, i);
+    rotateCrgbLeft(leds + i, i);
+    rotateCrgbLeft(leds + i * 3, i);
+    rotateCrgbRight(leds + i * 2, i);
+  }
+
+  replicatePanels();
+
+  FastLED.show();
+
+  delay(((splitRotationParams_t*) pat->patParams)->delay);
+}
+
+
+
+/***********
+ * Helpers *
+ ***********/
+
+
+void selectRandomRgb(CRGB* rgbColor, CRGB* rgbColorInverse)
+{
+  CHSV hsvColor;
+
+  // Choose a fully saturated random color.
+  hsvColor.h = random(256);
+  hsvColor.s = 255;
+  hsvColor.v = 255;
+  hsv2rgb_rainbow(hsvColor, *rgbColor);
+  
+  if (NULL != rgbColorInverse) {
+    switch (random(6)) {
+      case 0:
+        hsvColor.h += 64;    // 1/4 the way around the color wheel
+        break;
+      case 1:
+        hsvColor.h += 85;    // 1/3 the way around the color wheel
+        break;
+      case 2:
+        hsvColor.h -= 64;    // 1/4 the other way around the color wheel
+        break;
+      case 3:
+        hsvColor.h -= 85;    // 1/3 the other way around the color wheel
+        break;
+      default:
+        hsvColor.h += 128;   // complementary color
+        break;
+    }
+    hsv2rgb_rainbow(hsvColor, *rgbColorInverse);
+  }
+}
+
+
+void selectRandomHue(HSVHue* hue, HSVHue* hueInverse)
+{
+  uint8_t hueValue;
+
+  // Choose a fully saturated random color.
+  hueValue = random(256);
+  *hue = (HSVHue) hueValue;
+  
+  if (NULL != hueInverse) {
+    switch (random(6)) {
+      case 0:
+        hueValue += 64;    // 1/4 the way around the color wheel
+        break;
+      case 1:
+        hueValue += 85;    // 1/3 the way around the color wheel
+        break;
+      case 2:
+        hueValue -= 64;    // 1/4 the other way around the color wheel
+        break;
+      case 3:
+        hueValue -= 85;    // 1/3 the other way around the color wheel
+        break;
+      default:
+        hueValue += 128;   // complementary color
+        break;
+    }
+    *hueInverse = (HSVHue) hueValue;
+  }
+}
+
+
+void rotateCrgbRight(CRGB* a, uint8_t length)
+{
+  uint8_t i;
+  CRGB temp;
+
+  temp = a[length - 1];
+
+  for (i = length - 1; i > 0; --i) {
+    a[i] = a[i - 1];
+  }
+
+  a[0] = temp;
+}
+
+
+void rotateCrgbLeft(CRGB* a, uint8_t length)
+{
+  uint8_t i;
+  CRGB temp;
+
+  temp = a[0];
+
+  for (i = 0; i < length - 1; ++i) {
+    a[i] = a[i + 1];
+  }
+
+  a[length - 1] = temp;
+}
+
+
+void replicatePanels()
+{
+  if (NUM_PANELS <= 1)
+    return;
+  
+  uint8_t i;
+  uint8_t j;
+  
+  for (i = 0; i < PANEL_NUM_LEDS; ++i) {
+    for (j = 1; j < NUM_PANELS; ++j) {
+      leds[i + PANEL_NUM_LEDS * j] = leds[i];
+    }
+  }
+}
+
+
+
+/***********************
+ * Setup and Main Loop *
+ ***********************/
+
+
+void setup() {
+
+  FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);  // white pixel strips
+
+  // Analog input 0 should be disconnected, making it a good source of
+  // random noise with which we can seed the random number generator.
+  randomSeed(analogRead(0));  
+}
+
+
+void loop() {
+
+  static uint8_t patternNum = -1;
+  static pattern_t* pat;
+  static unsigned long nextPatternChangeMs = 0;
+
+  if (millis() < nextPatternChangeMs) {
+    (*pat->loopFun)(pat, false);
+  }
+  else {
+    if (++patternNum >= NUM_PATTERNS) {
+      patternNum = 0;
+    }
+    pat = patterns + patternNum;
+
+    nextPatternChangeMs = millis() + pat->durationSec * 1000;
+    
+    fill_solid(leds, NUM_LEDS, CRGB::Black);
+    FastLED.show();
+
+    (*pat->loopFun)(pat, true);
+  }  
+}
+

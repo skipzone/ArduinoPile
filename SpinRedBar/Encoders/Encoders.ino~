@@ -1,0 +1,149 @@
+/*****************************************************************
+ *                                                               *
+ * Wireless Triple Rotary Encoder Driver for Spin-the-Bar        *
+ *                                                               *
+ * Platform:  Arduino Uno, Pro, Pro Mini                         *
+ *                                                               *
+ * by Ross Butler, August 2015                               )'( *
+ *                                                               *
+ *****************************************************************/
+
+int ENCODER_0_A_PIN = A0;
+int ENCODER_0_B_PIN = A1;
+int ENCODER_1_A_PIN = A0;
+int ENCODER_1_B_PIN = A1;
+int ENCODER_2_A_PIN = A0;
+int ENCODER_2_B_PIN = A1;
+int ENCODERS_VDD_PIN = D8;
+
+
+volatile uint8_t lastEncoderStates = 0;
+volatile int encoderValues[3] = {0, 0, 0};
+const int8_t greyCodeToEncoderStepMap[] = {
+       // last this
+   0,  //  00   00
+  -1,  //  00   01
+   1,  //  00   10
+   0,  //  00   11
+   1,  //  01   00
+   0,  //  01   01
+   0,  //  01   10
+  -1,  //  01   11
+  -1,  //  10   00
+   0,  //  10   01
+   0,  //  10   10
+   1,  //  10   11
+   0,  //  11   00
+   1,  //  11   01
+  -1,  //  11   10
+   0,  //  11   11
+
+  //if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) encoderValue ++;
+  //if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) encoderValue --;
+};
+
+//volatile int lastEncoded = 0;
+//volatile long encoderValue = 0;
+
+
+void pciSetup(byte pin) 
+{
+  *digitalPinToPCMSK(pin) |= bit (digitalPinToPCMSKbit(pin));  // enable pin
+  PCIFR  |= bit (digitalPinToPCICRbit(pin)); // clear any outstanding interrupt
+  PCICR  |= bit (digitalPinToPCICRbit(pin)); // enable interrupt for the group 
+}
+
+
+ISR (PCINT1_vect) // handle pin change interrupt for A0 to A5 here
+{
+  uint8_t encoderStates = PORTC;
+
+  uint8_t curStates = encoderStates;
+  uint8_t lastStates = lastEncoderStates;
+
+  for (uint8_t i = 0; i < 3; ++i) {
+    uint8_t idx = ((lastStates & 0b11) << 2) | (curStates & 0b11);
+    encoderValues += greyCodeToEncoderStepMap[idx];
+    curStates >>= 2;
+    lastStates >>= 2;
+  }
+
+  lastEncoderStates = encoderStates;
+
+/*
+  int MSB = digitalRead(ENCODER_0_A_PIN); //MSB = most significant bit
+  int LSB = digitalRead(ENCODER_0_B_PIN); //LSB = least significant bit
+  int encoded = (MSB << 1) | LSB; //converting the 2 pin value to single number
+  int sum = (lastEncoded << 2) | encoded; //adding it to the previous encoded value
+
+  if (sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) encoderValue ++;
+  if (sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) encoderValue --;
+
+  lastEncoded = encoded; //store this value for next time
+*/
+}
+
+
+void setup()
+{
+  Serial.begin (9600);
+
+  pinMode(ENCODER_0_A_PIN, INPUT); 
+  pinMode(ENCODER_0_B_PIN, INPUT);
+  pinMode(ENCODER_1_A_PIN, INPUT); 
+  pinMode(ENCODER_1_B_PIN, INPUT);
+  pinMode(ENCODER_2_A_PIN, INPUT); 
+  pinMode(ENCODER_2_B_PIN, INPUT);
+  pinMode(ENCODERS_VDD_PIN, OUTPUT);
+
+  // Turn on pullups.
+  digitalWrite(ENCODER_0_A_PIN, HIGH);
+  digitalWrite(ENCODER_0_B_PIN, HIGH);
+  digitalWrite(ENCODER_1_A_PIN, HIGH);
+  digitalWrite(ENCODER_1_B_PIN, HIGH);
+  digitalWrite(ENCODER_2_A_PIN, HIGH);
+  digitalWrite(ENCODER_2_B_PIN, HIGH);
+  
+  // Initially, turn on power to the encoders.
+  digitalWrite(ENCODERS_VDD_PIN, HIGH);;
+
+  // Enable pin-change interrupts for encoders.
+  pciSetup(ENCODER_0_A_PIN);
+  pciSetup(ENCODER_0_B_PIN);
+  pciSetup(ENCODER_1_A_PIN);
+  pciSetup(ENCODER_1_B_PIN);
+  pciSetup(ENCODER_2_A_PIN);
+  pciSetup(ENCODER_2_B_PIN);
+}
+
+
+void loop()
+{
+  static int lastEncoderValues[3] = {0, 0, 0};
+
+  for (int i = 0; i < 3; ++i) {
+    thisEncoderValue = encoderValues[i];
+    if (thisEncoderValue != lastEncoderValues[i]) {
+      int encoderChange = thisEncoderValue = lastEncoderValues[i];
+      lastEncoderValues[i] = thisEncoderValue;
+      Serial.println(i);
+      Serial.println(encoderValue);
+      Serial.println(encoderChange);
+      Serial.println("-----");
+    }
+  }
+
+/*
+  if (digitalRead(ENCODER_0_SW_PIN)) {
+    digitalWrite(LED_BUILTIN, LOW);     // turn the LED off
+//    PORTB &= ~bit(5);  // turn off pin 13
+  }
+  else {
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on
+//    PORTB |= bit(5);  // turn on pin 13
+  }
+*/
+
+}
+
+
