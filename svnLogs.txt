@@ -1619,3 +1619,105 @@ Adding TrailerAwningPixelStrips which, at this point, is a very messy
 clone of HomePatioRGBStrips.
 
 ------------------------------------------------------------------------
+
+
+===================== TripperStickII ====================
+              1067     1067 ross         ../Arduino/TripperStickII/TripperStickII.ino.merge1
+              1067      940 ross         ../Arduino/TripperStickII/TripperStickII.ino
+              1067     1067 ross         ../Arduino/TripperStickII
+Status against revision:   1067
+------------------------------------------------------------------------
+r1067 | ross | 2022-05-14 14:04:54 -0600 (Sat, 14 May 2022) | 1 line
+
+Added date comment to TripperStickII.ino.merge1.
+------------------------------------------------------------------------
+r1066 | ross | 2022-05-14 14:03:03 -0600 (Sat, 14 May 2022) | 1 line
+
+Added TripperStickII.ino.merge1.  I do not remember what it was for.
+------------------------------------------------------------------------
+r940 | ross | 2016-04-08 22:14:20 -0600 (Fri, 08 Apr 2016) | 1 line
+
+New patterns for Sensory Illumination 2016.
+------------------------------------------------------------------------
+r833 | ross | 2015-08-24 22:44:29 -0600 (Mon, 24 Aug 2015) | 1 line
+
+Wrapped DMX ambiance light stuff in ifdefs.
+------------------------------------------------------------------------
+r830 | ross | 2015-08-11 21:22:22 -0600 (Tue, 11 Aug 2015) | 1 line
+
+Now spports more than 255 pixels.  Might still need some related testing and cleanup.
+------------------------------------------------------------------------
+r813 | ross | 2015-07-05 00:12:58 -0600 (Sun, 05 Jul 2015) | 1 line
+
+Added Red White and Blue pattern.
+------------------------------------------------------------------------
+r790 | ross | 2015-04-11 12:45:51 -0600 (Sat, 11 Apr 2015) | 1 line
+
+Unless something arises, this is what we are running at Sensory Illumination 9 on 11 April 2015.
+------------------------------------------------------------------------
+r789 | ross | 2015-04-09 02:24:50 -0600 (Thu, 09 Apr 2015) | 1 line
+
+Re-enabled the rest of the patterns.
+------------------------------------------------------------------------
+r788 | ross | 2015-04-09 02:22:37 -0600 (Thu, 09 Apr 2015) | 1 line
+
+Added dmxAmbianceRainbow.  Fixed BSU orange hue.
+------------------------------------------------------------------------
+r787 | ross | 2015-04-09 01:24:22 -0600 (Thu, 09 Apr 2015) | 1 line
+
+Changed led variable names to pixel.  Added DMX support.  Not tested.
+------------------------------------------------------------------------
+r784 | ross | 2015-04-06 00:45:24 -0600 (Mon, 06 Apr 2015) | 1 line
+
+Added some patterns to the active set.
+------------------------------------------------------------------------
+r783 | ross | 2015-04-06 00:15:41 -0600 (Mon, 06 Apr 2015) | 1 line
+
+Pattern params buffer now static (fixes bug that caused multiwave to freak out).
+------------------------------------------------------------------------
+r782 | ross | 2015-04-06 00:01:55 -0600 (Mon, 06 Apr 2015) | 1 line
+
+Pattern definitions now stored in flash.
+------------------------------------------------------------------------
+r781 | ross | 2015-04-05 21:49:52 -0600 (Sun, 05 Apr 2015) | 1 line
+
+patternDefs is now in flash (using PROGMEM).
+------------------------------------------------------------------------
+r780 | ross | 2015-04-05 21:09:24 -0600 (Sun, 05 Apr 2015) | 1 line
+
+Implemented pattern association table.
+------------------------------------------------------------------------
+r779 | ross | 2015-04-05 20:48:45 -0600 (Sun, 05 Apr 2015) | 1 line
+
+Almost done with implementing pattern association table.
+------------------------------------------------------------------------
+r778 | ross | 2015-04-05 14:11:43 -0600 (Sun, 05 Apr 2015) | 1 line
+
+Configured moving dot patterns pong, lift, zipper, paint, and shoot.
+------------------------------------------------------------------------
+r777 | ross | 2015-04-05 13:50:35 -0600 (Sun, 05 Apr 2015) | 1 line
+
+Added near-end hold, random colors, and zipper effect to moving dot.
+------------------------------------------------------------------------
+r776 | ross | 2015-04-05 12:22:11 -0600 (Sun, 05 Apr 2015) | 1 line
+
+Added NUM_SKIP_LEDS and hold time for moving dot.
+------------------------------------------------------------------------
+r775 | ross | 2015-04-01 22:39:53 -0600 (Wed, 01 Apr 2015) | 1 line
+
+Played with patterns a little.
+------------------------------------------------------------------------
+r774 | ross | 2015-04-01 22:22:29 -0600 (Wed, 01 Apr 2015) | 1 line
+
+Added free-memory display at startup.
+------------------------------------------------------------------------
+r773 | ross | 2015-03-31 22:27:29 -0600 (Tue, 31 Mar 2015) | 2 lines
+
+Started adapting patterns to the stick.
+
+------------------------------------------------------------------------
+r771 | ross | 2015-03-31 21:24:29 -0600 (Tue, 31 Mar 2015) | 2 lines
+
+Creating TripperStickII project.
+
+------------------------------------------------------------------------
