@@ -29,17 +29,36 @@
 
 using namespace pixelPattern;
 
-const String apPassword = "";
-const String apSsid = "";
+// const String apSsid = "treelights";
+// const String apPassword = "2083433061";
+// const String staSsid = "";
+// const String staPasskey = "";
+// const String staticIpAddress = "";
+// const String subnetMask = "";
+// const String gatewayAddress = "";
+// const String dns1Address = "";
+// const String dns2Address = "";
 
 const String staSsid = "trees";
 const String staPasskey = "2083433061";
-
 const String staticIpAddress = "192.168.76.8";
-const String gatewayAddress = "192.168.76.3";
 const String subnetMask = "255.255.255.0";
+const String gatewayAddress = "192.168.76.3";
 const String dns1Address = "192.168.76.3";
 const String dns2Address = "0.0.0.0";
+const String apSsid = "";
+const String apPassword = "";
+
+// const String staSsid = "meow";
+// const String staPasskey = "11111111";
+// const String staticIpAddress = "10.10.10.8";
+// const String subnetMask = "255.255.255.0";
+// const String gatewayAddress = "10.10.10.254";
+// const String dns1Address = "10.10.10.254";
+// const String dns2Address = "0.0.0.0";
+// const String apSsid = "";
+// const String apPassword = "";
+
 
 #define NUM_SECTIONS 2
 #define MAX_SECTION_PATTERNS 39
@@ -178,17 +197,21 @@ void setup()
 
   initPatterns();
 
-  initWebPage();
+  // initWebPage();
+
+  // TODO:  random pattern selection until Wi-Fi conflict is fixed
+  sectionPatternSelector[0].setPatternNum(255);
+  // sectionPatternSelector[1].setPatternNum(255);
 }
 
 
 void loop() 
 {
-  esp8266WebPage.doWiFi();
+  // esp8266WebPage.doWiFi();
 
   patternController.update();
   
-  if (patternController.getUpdateLeds(sectionPatternSequenceIdxs[1])) {
-    writeToDmxLeds();
-  }
+  // if (patternController.getUpdateLeds(sectionPatternSequenceIdxs[1])) {
+  //   writeToDmxLeds();
+  // }
 }
